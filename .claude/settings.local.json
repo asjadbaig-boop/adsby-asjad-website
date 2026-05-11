@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(Remove-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\my website!\\\\src\\\\components\\\\Webinar.jsx\" -Force)",
+      "Bash(Write-Output \"deleted\")"
+    ]
+  }
+}

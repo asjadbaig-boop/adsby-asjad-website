@@ -1,0 +1,153 @@
+/* ─── Section ────────────────────────────────────────────── */
+.services-section {
+  position: relative;
+  z-index: 1;
+  background: var(--surface);
+  border-top: 1px solid var(--hairline);
+  padding: var(--section-v) 0;
+}
+
+.services-inner {
+  width: 100%;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+/* ─── Header ─────────────────────────────────────────────── */
+.services-headline {
+  font-weight: 700;
+  font-size: 52px;
+  color: var(--ink);
+  line-height: 1.1;
+  letter-spacing: -1.5px;
+  margin-bottom: 12px;
+}
+
+.services-sub {
+  font-weight: 300;
+  font-size: 17px;
+  color: var(--ink-secondary);
+  margin-bottom: 64px;
+}
+
+/* ─── Grid ───────────────────────────────────────────────── */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--surface-border);
+}
+
+/* ─── Card container ─────────────────────────────────────── */
+.service-card {
+  position: relative;
+  background: var(--surface-raised);
+  padding: 32px 28px;
+  border-radius: 0;
+  transition: border-color 0.2s ease, opacity 600ms ease, transform 600ms ease;
+  border: 1px solid transparent;
+}
+
+.service-card:hover {
+  border-color: rgba(28, 105, 212, 0.4);
+  z-index: 1;
+}
+
+/* Flashlight hover effect */
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--primary-glow),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+/* Blue accent square */
+.service-card__accent {
+  width: 20px;
+  height: 20px;
+  background: var(--primary);
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Toggle — exact rules from spec ─────────────────────── */
+.service-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 24px 0;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+}
+
+.service-card__title {
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+  font-family: inherit;
+}
+
+.service-card__icon {
+  color: var(--primary);
+  font-size: 20px;
+  font-weight: 300;
+  flex-shrink: 0;
+  margin-left: 16px;
+  line-height: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.service-card--open .service-card__title {
+  color: var(--primary);
+}
+
+.service-card__body {
+  overflow: hidden;
+  transition: max-height 350ms ease;
+  max-height: 0px;
+  position: relative;
+  z-index: 1;
+}
+
+.service-card__text {
+  color: var(--ink-secondary);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.65;
+  padding: 16px 0 24px 0;
+  margin: 0;
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .services-headline { font-size: 36px; letter-spacing: -1px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .services-inner { padding: 0 20px; }
+}
