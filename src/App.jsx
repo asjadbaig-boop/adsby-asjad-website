@@ -1,7 +1,6 @@
 import { useEffect, useRef } from 'react'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
-import PainPoints from './components/PainPoints'
 import HiddenProblems from './components/HiddenProblems'
 import HiringSection from './components/HiringSection'
 import MidCTA from './components/MidCTA'
@@ -72,8 +71,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <PainPoints />
-        <HiddenProblems />
+<HiddenProblems />
         <HiringSection />
         <MidCTA />
         <SectionDivider />
