@@ -34,7 +34,7 @@ export default function Process() {
     <section id="process" style={{ background: 'var(--canvas)', padding: '80px 0' }}>
       <div className="process-inner" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>HOW IT WORKS</p>
-        <h2 style={{ fontSize: 'clamp(32px, 5vw, 52px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '48px' }}>A system, not a service.</h2>
+        <h2 style={{ fontSize: 'clamp(37px, 5.75vw, 60px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '48px', lineHeight: 1 }}>A system, <span style={{ color: 'var(--primary)' }}>not a service.</span></h2>
         {STEPS.map((step) => <Step key={step.n} {...step} defaultOpen={step.n === '01'} />)}
         <div style={{ borderTop: '1px solid var(--hairline)' }} />
       </div>

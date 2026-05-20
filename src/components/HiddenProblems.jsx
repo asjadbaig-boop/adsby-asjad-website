@@ -58,7 +58,7 @@ export default function HiddenProblems() {
       <div style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px' }}>
         <p className="reveal" style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>THE REAL PROBLEMS</p>
         <h2 className="reveal" style={{ '--delay': '80ms', fontSize: 'clamp(28px,4vw,44px)', fontWeight: '700', color: '#ffffff', marginBottom: '16px', letterSpacing: '-1px', lineHeight: 1.1 }}>
-          Your ads are running. The leads just aren't showing up.
+          Your ads are running. The leads just <span style={{ color: 'var(--primary)' }}>aren't showing up.</span>
         </h2>
         <div className="reveal" style={{ '--delay': '160ms' }}>
           {PROBLEMS.map((problem) => <ProblemItem key={problem.n} {...problem} />)}

@@ -12,18 +12,10 @@ import Portfolio from './components/Portfolio'
 import AdShowcase from './components/AdShowcase'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
+import Ticker from './components/Ticker'
 
 function BgMesh() {
   const meshRef = useRef(null)
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    const mesh = meshRef.current
-    if (!mesh) return
-    let rafId
-    const tick = () => { mesh.style.transform = `translateY(${window.scrollY * 0.15}px)`; rafId = requestAnimationFrame(tick) }
-    rafId = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(rafId)
-  }, [])
   return (
     <div className="bg-mesh" ref={meshRef} aria-hidden="true">
       <div className="bg-blob-1" />
@@ -71,7 +63,8 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-<HiddenProblems />
+        <Ticker />
+        <HiddenProblems />
         <HiringSection />
         <MidCTA />
         <SectionDivider />
@@ -88,7 +81,7 @@ export default function App() {
         </div>
         <SectionDivider />
         <Results />
-        <SectionDivider />
+        <Ticker reverse />
         <Testimonials />
         <Portfolio />
         <AdShowcase />

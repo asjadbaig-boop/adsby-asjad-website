@@ -9,7 +9,7 @@ export default function PainPoints() {
   return (
     <section style={{ background: 'var(--surface)', padding: '80px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px' }}>Sound familiar?</h2>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px', lineHeight: 1 }}>Sound <span style={{ color: 'var(--primary)' }}>familiar?</span></h2>
         <p style={{ fontSize: '16px', fontWeight: '300', color: 'var(--ink-secondary)', marginBottom: '40px' }}>These are the problems most Meta Ads accounts run into.</p>
         <div className="pain-points-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
           {points.map((p, i) => (

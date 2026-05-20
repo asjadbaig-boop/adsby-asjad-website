@@ -18,21 +18,26 @@ export default function Nav() {
   }, [open])
 
   useEffect(() => {
-    const onScroll = () => setAtTop(window.scrollY === 0)
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    const sentinel = document.querySelector('.nav-sentinel')
+    if (!sentinel) return
+    const observer = new IntersectionObserver(([entry]) => {
+      setAtTop(entry.isIntersecting)
+    }, { threshold: 1 })
+    observer.observe(sentinel)
+    return () => observer.disconnect()
   }, [])
 
   const close = () => setOpen(false)
 
   return (
     <>
+      <span className="nav-sentinel" aria-hidden="true" />
       <nav className={`nav-outer${atTop ? ' nav-outer--top' : ''}`} aria-label="Main navigation">
         <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
           <img
             src="/logo.svg"
             alt="AdsByAsjad"
+            loading="lazy"
             style={{
               height: '32px',
               width: 'auto',

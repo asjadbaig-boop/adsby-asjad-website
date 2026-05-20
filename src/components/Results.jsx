@@ -1,15 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 
-const TICKER_ITEMS = [
-  'Audience Fatigue Detection',
-  'Creative Testing',
-  'Budget Reallocation',
-  'Landing Page Audits',
-  'CPR Optimisation',
-  'Conversion Tracking',
-  'Campaign Architecture',
-]
-
 const stats = [
   { raw: -70, display: '-70%', label: 'Cost per registration dropped overnight after one landing page fix', category: 'COST PER LEAD' },
   { raw: 480, display: '+480%', label: 'More registrations day over day after a creative and structure overhaul', category: 'REGISTRATION VOLUME' },
@@ -46,17 +36,6 @@ function StatItem({ stat }) {
       </div>
       <div className="stat__rule results-stat-rule" />
       <p className="stat__label results-stat-label">{stat.label}</p>
-    </div>
-  )
-}
-
-function Ticker() {
-  const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS]
-  return (
-    <div className="ticker-band reveal-item" aria-hidden="true">
-      <div className="ticker-track">
-        {doubled.map((item, index) => <span className="ticker-item" key={`${item}-${index}`}>{item}</span>)}
-      </div>
     </div>
   )
 }
@@ -164,7 +143,7 @@ export default function Results() {
       <div className="container">
         <div className="results__header">
           <span className="section-label reveal" style={{ '--delay': '0ms' }}>Results</span>
-          <h2 className="results__headline h2-reveal" ref={h2Ref}>What actually moved.</h2>
+          <h2 className="results__headline h2-reveal" ref={h2Ref}>What <span style={{ color: 'var(--primary)' }}>actually</span> moved.</h2>
         </div>
         <div className="results__stats results-stats" ref={statsRef} onScroll={handleStatsScroll}>
           {stats.map((stat) => <StatItem key={stat.display} stat={stat} />)}
@@ -181,7 +160,6 @@ export default function Results() {
           <p className="results__attribution">Ken &amp; Anna Live Session Campaign</p>
         </div>
       </div>
-      <Ticker />
     </section>
   )
 }

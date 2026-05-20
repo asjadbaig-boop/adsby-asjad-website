@@ -75,7 +75,7 @@ export default function AdShowcase() {
     <section style={{ background: 'var(--canvas)', padding: '80px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>CREATIVE WORK</p>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px' }}>Ads that convert.</h2>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px', lineHeight: 1 }}>Ads that <span style={{ color: 'var(--primary)' }}>convert.</span></h2>
         <p style={{ fontSize: '16px', fontWeight: '300', color: 'var(--ink-secondary)', marginBottom: '40px' }}>All ad formats tested across campaigns.</p>
         <div
           className="ad-strip"

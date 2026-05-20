@@ -10,7 +10,7 @@ export default function MidCTA() {
       <div style={{ maxWidth: '720px', margin: '0 auto', textAlign: 'center', position: 'relative', zIndex: 1 }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'rgba(255,255,255,0.6)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '16px' }}>FREE AUDIT</p>
         <h2 className="reveal" style={{ fontSize: 'clamp(28px,4vw,44px)', fontWeight: '700', color: '#ffffff', letterSpacing: '-1px', lineHeight: 1.1, marginBottom: '16px' }}>
-          Find out exactly where your budget is leaking.
+          Find out exactly where your <span style={{ color: 'var(--primary)' }}>budget is leaking.</span>
         </h2>
         <p style={{ fontSize: '16px', fontWeight: '300', color: 'rgba(255,255,255,0.75)', lineHeight: 1.65, marginBottom: '32px' }}>
           A 20-minute audit call. No pitch, no pressure. Just a clear answer on what is costing you leads.

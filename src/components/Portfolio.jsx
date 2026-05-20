@@ -83,7 +83,7 @@ export default function Portfolio() {
         <div className="dot-grid" aria-hidden="true" />
         <div style={{ maxWidth: '1160px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
           <p className="reveal" style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>RESULTS</p>
-          <h2 className="reveal" style={{ '--delay': '80ms', fontSize: 'clamp(28px,4vw,44px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px', letterSpacing: '-1px' }}>
+          <h2 className="reveal" style={{ '--delay': '80ms', fontSize: 'clamp(32px,4.6vw,51px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px', letterSpacing: '-0.02em', lineHeight: 1 }}>
             Campaigns <span className="headline-accent" ref={accentRef}>we've run.</span>
           </h2>
           <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>

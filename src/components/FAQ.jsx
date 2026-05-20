@@ -67,7 +67,7 @@ export default function FAQ() {
     <section style={{ background: 'var(--surface)', padding: '80px 0' }}>
       <div className="faq-inner" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px' }}>
         <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>FAQ</p>
-        <h2 style={{ fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '48px' }}>Questions I get <span className="headline-accent" ref={accentRef}>asked.</span></h2>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '48px', lineHeight: 1 }}>Questions I get <span className="headline-accent" ref={accentRef}>asked.</span></h2>
         {FAQS.map((faq) => <FAQItem key={faq.q} {...faq} />)}
         <div style={{ borderTop: '1px solid var(--hairline)' }} />
       </div>
