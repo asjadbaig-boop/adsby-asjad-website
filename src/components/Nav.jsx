@@ -33,33 +33,10 @@ export default function Nav() {
     <>
       <span className="nav-sentinel" aria-hidden="true" />
       <nav className={`nav-outer${atTop ? ' nav-outer--top' : ''}`} aria-label="Main navigation">
-        <a href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-          <img
-            src="/logo.svg"
-            alt="AdsByAsjad"
-            loading="lazy"
-            style={{
-              height: '32px',
-              width: 'auto',
-              objectFit: 'contain',
-              display: 'block',
-            }}
-            onError={(e) => {
-              e.target.style.display = 'none'
-              e.target.nextSibling.style.display = 'flex'
-            }}
-          />
-          <span style={{
-            display: 'none',
-            alignItems: 'center',
-            gap: '10px',
-            fontSize: '15px',
-            fontWeight: '700',
-            color: '#ffffff',
-            fontFamily: 'inherit',
-          }}>
-            AdsByAsjad
-          </span>
+        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: '3px' }}>
+          <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 900, fontSize: '20px', color: '#18161A', letterSpacing: '-0.04em' }}>Ads</span>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: '20px', color: '#6B6560' }}>by</span>
+          <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 900, fontSize: '20px', color: '#E8291E', letterSpacing: '-0.04em' }}>Asjad</span>
         </a>
 
         <ul className="nav__links">
@@ -79,15 +56,17 @@ export default function Nav() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: '8px',
-            background: '#25D366',
+            background: 'var(--red)',
             color: '#ffffff',
-            fontWeight: '700',
-            fontSize: '13px',
-            padding: '0 20px',
-            height: '38px',
-            borderRadius: '999px',
+            fontFamily: "'DM Sans', sans-serif",
+            fontWeight: '600',
+            fontSize: '12px',
+            padding: '0 16px',
+            height: '34px',
+            borderRadius: 'var(--r-sm)',
             textDecoration: 'none',
             whiteSpace: 'nowrap',
+            boxShadow: '0 2px 8px var(--red-glow)',
           }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="white">

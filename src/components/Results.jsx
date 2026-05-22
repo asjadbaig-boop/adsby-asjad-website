@@ -24,7 +24,7 @@ function StatItem({ stat }) {
   const numRef = useRef(null)
   return (
     <div className="stat reveal-item results-stat-item">
-      <div style={{ fontSize: '11px', fontWeight: '700', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '8px' }}>{stat.category}</div>
+      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '11px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '8px' }}>{stat.category}</div>
       <div
         className="stat__number results-stat-number"
         ref={numRef}
@@ -142,8 +142,8 @@ export default function Results() {
     <section className="results results-section" id="results" ref={sectionRef}>
       <div className="container">
         <div className="results__header">
-          <span className="section-label reveal" style={{ '--delay': '0ms' }}>Results</span>
-          <h2 className="results__headline h2-reveal" ref={h2Ref}>What <span style={{ color: 'var(--primary)' }}>actually</span> moved.</h2>
+          <span className="section-label reveal" style={{ '--delay': '0ms', color: 'var(--red)' }}>Results</span>
+          <h2 className="results__headline h2-reveal" ref={h2Ref}>What <span style={{ color: 'var(--red)' }}>actually</span> moved.</h2>
         </div>
         <div className="results__stats results-stats" ref={statsRef} onScroll={handleStatsScroll}>
           {stats.map((stat) => <StatItem key={stat.display} stat={stat} />)}

@@ -29,14 +29,14 @@ function FAQItem({ q, a }) {
   const innerRef = useRef(null)
   useEffect(() => { if (innerRef.current) setHeight(innerRef.current.scrollHeight) }, [])
   return (
-    <div style={{ borderTop: '1px solid var(--hairline)' }}>
+    <div style={{ borderTop: '1px solid var(--border-1)' }}>
       <div onClick={() => setOpen((value) => !value)} style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '22px 0', cursor: 'pointer', userSelect: 'none' }}>
-        <span style={{ fontSize: '17px', fontWeight: '600', color: 'var(--ink)', flex: 1, fontFamily: 'inherit' }}>{q}</span>
-        <span style={{ fontSize: '16px', color: 'var(--primary)', flexShrink: 0, transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 300ms ease', display: 'inline-block' }}>v</span>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '17px', fontWeight: '600', color: 'var(--text-1)', flex: 1 }}>{q}</span>
+        <span style={{ fontSize: '16px', color: 'var(--red)', flexShrink: 0, transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 300ms ease', display: 'inline-block' }}>v</span>
       </div>
       <div style={{ overflow: 'hidden', maxHeight: open ? `${height}px` : '0px', transition: 'max-height 350ms ease' }}>
-        <div ref={innerRef} style={{ paddingBottom: '22px' }}>
-          <p style={{ fontSize: '15px', fontWeight: '300', color: 'var(--ink-secondary)', lineHeight: '1.65', margin: 0 }}>{a}</p>
+        <div ref={innerRef} style={{ paddingBottom: '22px', borderLeft: open ? '2px solid var(--red)' : 'none', paddingLeft: open ? '16px' : '0' }}>
+          <p style={{ fontFamily: 'var(--font-sans)', fontSize: '15px', fontWeight: '300', color: 'var(--text-2)', lineHeight: '1.65', margin: 0 }}>{a}</p>
         </div>
       </div>
     </div>
@@ -64,12 +64,12 @@ export default function FAQ() {
   }, [])
 
   return (
-    <section style={{ background: 'var(--surface)', padding: '80px 0' }}>
+    <section style={{ background: 'var(--bg-elevated)', padding: '80px 0' }}>
       <div className="faq-inner" style={{ maxWidth: '800px', margin: '0 auto', padding: '0 24px' }}>
-        <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>FAQ</p>
-        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '48px', lineHeight: 1 }}>Questions I get <span className="headline-accent" ref={accentRef}>asked.</span></h2>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px' }}>FAQ</p>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', color: 'var(--text-1)', marginBottom: '48px', lineHeight: 1 }}>Questions I get <span className="headline-accent" ref={accentRef}>asked.</span></h2>
         {FAQS.map((faq) => <FAQItem key={faq.q} {...faq} />)}
-        <div style={{ borderTop: '1px solid var(--hairline)' }} />
+        <div style={{ borderTop: '1px solid var(--border-1)' }} />
       </div>
     </section>
   )

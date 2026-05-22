@@ -1,9 +1,9 @@
 const ADS = [
-  { format: 'Story', bg: 'linear-gradient(160deg, #0d1b3e 0%, #1c69d4 100%)',    w: 180, h: 320 },
-  { format: 'Feed',  bg: 'linear-gradient(135deg, #0a0a1a 0%, #1c3a6e 100%)',    w: 280, h: 280 },
-  { format: 'Story', bg: 'linear-gradient(160deg, #023e8a 0%, #0096c7 100%)',    w: 180, h: 320 },
-  { format: 'Reel',  bg: 'linear-gradient(135deg, #1c69d4 0%, #023e8a 100%)',    w: 180, h: 320 },
-  { format: 'Feed',  bg: 'linear-gradient(160deg, #0d1b3e 0%, #1c69d4 100%)',    w: 240, h: 300 },
+  { format: 'Story', bg: 'linear-gradient(160deg, #1a0a08 0%, #E8291E 100%)',    w: 180, h: 320 },
+  { format: 'Feed',  bg: 'linear-gradient(135deg, #18161A 0%, #3d1410 100%)',    w: 280, h: 280 },
+  { format: 'Story', bg: 'linear-gradient(160deg, #2d0d0a 0%, #CC2218 100%)',    w: 180, h: 320 },
+  { format: 'Reel',  bg: 'linear-gradient(135deg, #E8291E 0%, #2d0d0a 100%)',    w: 180, h: 320 },
+  { format: 'Feed',  bg: 'linear-gradient(160deg, #1a0a08 0%, #E8291E 100%)',    w: 240, h: 300 },
 ]
 
 function AdCard({ format, bg, w, h }) {
@@ -16,7 +16,7 @@ function AdCard({ format, bg, w, h }) {
         borderRadius: '12px',
         overflow: 'hidden',
         position: 'relative',
-        border: '1px solid rgba(28,105,212,0.2)',
+        border: '1px solid rgba(232,41,30,0.2)',
       }}>
         {/* Sponsored badge */}
         <div style={{
@@ -55,7 +55,7 @@ function AdCard({ format, bg, w, h }) {
           <div style={{ height: '8px', width: '50%', background: 'rgba(255,255,255,0.3)', borderRadius: '3px', marginBottom: '12px' }} />
           <div style={{
             height: '30px',
-            background: 'rgba(28,105,212,0.9)',
+            background: 'rgba(232,41,30,0.9)',
             borderRadius: '4px',
             display: 'flex',
             alignItems: 'center',
@@ -74,9 +74,9 @@ export default function AdShowcase() {
   return (
     <section style={{ background: 'var(--canvas)', padding: '80px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>CREATIVE WORK</p>
-        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '8px', lineHeight: 1 }}>Ads that <span style={{ color: 'var(--primary)' }}>convert.</span></h2>
-        <p style={{ fontSize: '16px', fontWeight: '300', color: 'var(--ink-secondary)', marginBottom: '40px' }}>All ad formats tested across campaigns.</p>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px' }}>CREATIVE WORK</p>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', color: 'var(--text-1)', marginBottom: '8px', lineHeight: 1 }}>Ads that <span style={{ color: 'var(--red)' }}>convert.</span></h2>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '16px', fontWeight: '300', color: 'var(--text-2)', marginBottom: '40px' }}>All ad formats tested across campaigns.</p>
         <div
           className="ad-strip"
           style={{

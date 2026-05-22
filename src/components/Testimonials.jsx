@@ -27,10 +27,10 @@ export default function Testimonials() {
   }, [])
 
   return (
-    <section className="testimonials-wall-section" style={{ background: '#0d0d0d', padding: '80px 0' }}>
+    <section className="testimonials-wall-section" style={{ background: 'var(--bg-base)', padding: '80px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>WHAT CLIENTS SAY</p>
-        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '700', color: '#ffffff', marginBottom: '48px', lineHeight: 1 }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px' }}>WHAT CLIENTS SAY</p>
+        <h2 style={{ fontSize: 'clamp(32px, 4.6vw, 46px)', fontWeight: '900', color: 'var(--text-1)', marginBottom: '48px', lineHeight: 1 }}>
           What clients have <span className="headline-accent" ref={accentRef}>said.</span>
         </h2>
         <div className="testimonials-grid testimonials-wall">

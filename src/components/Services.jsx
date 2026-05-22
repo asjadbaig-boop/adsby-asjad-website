@@ -33,7 +33,7 @@ function ServiceIcon({ type }) {
     height: 80,
     viewBox: '0 0 80 80',
     fill: 'none',
-    stroke: 'rgba(28,105,212,0.6)',
+    stroke: 'rgba(232,41,30,0.4)',
     strokeWidth: 1.5,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
@@ -70,11 +70,11 @@ export default function Services() {
   }, [])
 
   return (
-    <section id="services" style={{ background: 'var(--surface)', padding: '80px 0', position: 'relative' }}>
+    <section id="services" style={{ background: 'var(--bg-base)', padding: '80px 0', position: 'relative' }}>
       <div className="dot-grid" aria-hidden="true" />
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
-        <p style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '12px' }}>WHAT I DO</p>
-        <h2 className="services-feature__headline" style={{ fontSize: 'clamp(37px, 5.75vw, 60px)', fontWeight: '700', color: 'var(--ink)', marginBottom: '28px', lineHeight: 1 }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px' }}>WHAT I DO</p>
+        <h2 className="services-feature__headline" style={{ fontSize: 'clamp(37px, 5.75vw, 60px)', color: 'var(--text-1)', marginBottom: '28px', lineHeight: 1 }}>
           What I actually do <span className="headline-accent" ref={accentRef}>for your account.</span>
         </h2>
         <div className="services-feature__list">

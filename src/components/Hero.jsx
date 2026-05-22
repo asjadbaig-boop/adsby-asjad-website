@@ -37,7 +37,7 @@ export default function Hero() {
 
           <h1 className="hero__headline">
             More leads.<br />
-            <span style={{ color: 'var(--primary)' }}>Lower cost.</span><br />
+            <span style={{ color: 'var(--red)' }}>Lower cost.</span><br />
             Guaranteed results.
           </h1>
 

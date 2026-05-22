@@ -27,11 +27,14 @@ export default function Contact() {
   }, [])
 
   return (
-    <footer id="contact" style={{ background: 'var(--surface)', padding: '80px 0 0' }}>
+    <footer id="contact" style={{ background: '#18161A', padding: '80px 0 0' }}>
       <div style={{ maxWidth: '720px', margin: '0 auto', padding: '0 24px', textAlign: 'center', paddingBottom: '80px' }}>
-        <h2 className="contact-headline" style={{ fontSize: 'clamp(32px,5vw,52px)', fontWeight: '700', color: 'var(--ink)', letterSpacing: '-1.5px', marginBottom: '16px', lineHeight: 1.05 }}>
+        <h2 className="contact-headline" style={{ fontFamily: "'Fraunces', serif", fontSize: 'clamp(32px,5vw,52px)', fontWeight: '900', color: '#ffffff', letterSpacing: '-0.03em', marginBottom: '16px', lineHeight: 1.05 }}>
           Let's cut your cost per <span className="headline-accent" ref={accentRef}>lead.</span>
         </h2>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '16px', fontWeight: '300', color: 'var(--text-3)', marginBottom: '28px', lineHeight: 1.65 }}>
+          Free audit. No lock-in. You deal with me directly.
+        </p>
         <div className="contact-buttons" style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap', marginBottom: '10px' }}>
           <a
             ref={waRef}
@@ -39,7 +42,7 @@ export default function Contact() {
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"
-            style={{ height: '52px', borderRadius: 0, padding: '0 32px', fontSize: '15px' }}
+            style={{ height: '52px', padding: '0 32px', fontSize: '15px' }}
           >
             Claim My Free Audit →
           </a>
@@ -47,19 +50,24 @@ export default function Contact() {
             ref={emailRef}
             href="mailto:Asjadbaigqaz@gmail.com"
             className="btn-ghost"
-            style={{ height: '52px', borderRadius: 0, padding: '0 32px', fontSize: '15px' }}
+            style={{ height: '52px', padding: '0 32px', fontSize: '15px', color: '#ffffff', borderColor: 'var(--border-3)' }}
           >
             Get in Touch
           </a>
         </div>
 
-        <p style={{ fontSize: '12px', color: 'var(--ink-muted)', marginTop: '10px', textAlign: 'center', marginBottom: '0' }}>
+        <p style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', color: 'var(--text-3)', marginTop: '10px', textAlign: 'center', marginBottom: '0' }}>
           Free. No commitment. I reply within 2 hours.
         </p>
       </div>
 
-      <div className="footer-inner" style={{ borderTop: '1px solid var(--hairline)', padding: '24px 40px', maxWidth: '1160px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
-        <span style={{ fontSize: '12px', fontWeight: '400', color: 'var(--ink-muted)' }}>(c) 2026 AdsByAsjad. All rights reserved.</span>
+      <div className="footer-inner" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '24px 40px', maxWidth: '1160px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
+        <a href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'baseline', gap: '3px' }}>
+          <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 900, fontSize: '16px', color: '#ffffff', letterSpacing: '-0.04em' }}>Ads</span>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: '16px', color: 'var(--text-3)' }}>by</span>
+          <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 900, fontSize: '16px', color: '#E8291E', letterSpacing: '-0.04em' }}>Asjad</span>
+        </a>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', fontWeight: '400', color: 'var(--text-3)' }}>(c) 2026 AdsByAsjad. All rights reserved.</span>
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
           {[
             { label: 'Asjadbaigqaz@gmail.com', href: 'mailto:Asjadbaigqaz@gmail.com' },
@@ -67,9 +75,9 @@ export default function Contact() {
             { label: 'Instagram', href: 'https://instagram.com/itsasjadbaig/' },
           ].map((link) => (
             <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"
-              style={{ fontSize: '13px', fontWeight: '400', color: 'var(--ink-muted)', transition: 'color 0.15s ease' }}
-              onMouseEnter={(event) => { event.currentTarget.style.color = 'var(--primary)' }}
-              onMouseLeave={(event) => { event.currentTarget.style.color = 'var(--ink-muted)' }}
+              style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: '400', color: 'var(--text-3)', transition: 'color 0.15s ease' }}
+              onMouseEnter={(event) => { event.currentTarget.style.color = 'var(--red)' }}
+              onMouseLeave={(event) => { event.currentTarget.style.color = 'var(--text-3)' }}
             >{link.label}</a>
           ))}
         </div>

@@ -42,26 +42,34 @@
 /* ─── Card container ─────────────────────────────────────── */
 .service-card {
   position: relative;
-  background: var(--surface-raised);
+  background: var(--bg-surface);
   padding: 32px 28px;
-  border-radius: 0;
-  transition: border-color 0.2s ease, opacity 600ms ease, transform 600ms ease;
-  border: 1px solid transparent;
+  border-radius: var(--r-lg);
+  border-top: 2px solid var(--red);
+  border-left: 1px solid var(--border-1);
+  border-right: 1px solid var(--border-1);
+  border-bottom: 1px solid var(--border-1);
+  box-shadow: var(--shadow-1);
+  transition: border-color var(--slow) var(--ease-out), box-shadow var(--slow) var(--ease-out), transform var(--slow) var(--ease-out), opacity 600ms ease;
 }
 
 .service-card:hover {
-  border-color: rgba(28, 105, 212, 0.4);
+  border-color: var(--border-2);
+  border-top-color: var(--red);
+  box-shadow: var(--shadow-2);
+  transform: translateY(-2px);
   z-index: 1;
 }
 
-/* Flashlight hover effect */
+/* Red glow hover effect */
 .service-card::before {
   content: '';
   position: absolute;
   inset: 0;
+  border-radius: var(--r-lg);
   background: radial-gradient(
     400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    var(--primary-glow),
+    var(--red-dim),
     transparent 60%
   );
   opacity: 0;
@@ -74,11 +82,11 @@
   opacity: 1;
 }
 
-/* Blue accent square */
+/* Red accent square */
 .service-card__accent {
   width: 20px;
   height: 20px;
-  background: var(--primary);
+  background: var(--red);
   margin-bottom: 24px;
   position: relative;
   z-index: 1;
@@ -100,14 +108,14 @@
 }
 
 .service-card__title {
-  color: var(--ink);
+  color: var(--text-1);
   font-size: 18px;
   font-weight: 700;
-  font-family: inherit;
+  font-family: var(--font-sans);
 }
 
 .service-card__icon {
-  color: var(--primary);
+  color: var(--red);
   font-size: 20px;
   font-weight: 300;
   flex-shrink: 0;
@@ -118,7 +126,7 @@
 }
 
 .service-card--open .service-card__title {
-  color: var(--primary);
+  color: var(--red);
 }
 
 .service-card__body {
@@ -130,9 +138,10 @@
 }
 
 .service-card__text {
-  color: var(--ink-secondary);
-  font-size: 15px;
+  font-family: var(--font-sans);
   font-weight: 300;
+  color: var(--text-2);
+  font-size: 15px;
   line-height: 1.65;
   padding: 16px 0 24px 0;
   margin: 0;

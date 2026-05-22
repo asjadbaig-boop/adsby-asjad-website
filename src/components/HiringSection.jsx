@@ -9,13 +9,13 @@ const SKILLS = ['Meta Ads', 'Pixel + CAPI', 'GoHighLevel', 'Lead Gen', 'Creative
 
 export default function HiringSection() {
   return (
-    <section className="hiring-card-section" style={{ background: '#0d0d0d', padding: '80px 0' }}>
+    <section className="hiring-card-section" style={{ background: '#18161A', padding: '80px 0' }}>
       <div className="hiring-card">
         <div className="hiring-card__badge">
           <span />
           <strong>Open to work</strong>
         </div>
-        <h2>Hiring a <span style={{ color: 'var(--primary)' }}>media buyer?</span></h2>
+        <h2>Hiring a <span style={{ color: 'var(--red)' }}>media buyer?</span></h2>
         <div className="hiring-card__stats">
           {STATS.map((stat) => (
             <div className="hiring-card__stat" key={stat.number}>

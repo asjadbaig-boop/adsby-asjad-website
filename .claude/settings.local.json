@@ -5,7 +5,9 @@
       "Bash(npm run *)",
       "Bash(Remove-Item \"C:\\\\Users\\\\hp\\\\Desktop\\\\my website!\\\\src\\\\components\\\\Webinar.jsx\" -Force)",
       "Bash(Write-Output \"deleted\")",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

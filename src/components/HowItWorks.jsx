@@ -13,11 +13,11 @@ export default function HowItWorks() {
   const step = STEPS[active]
 
   return (
-    <section id="process" className="process-tabs-section" style={{ background: '#0d0d0d', padding: '80px 0', position: 'relative', zIndex: 1 }}>
+    <section id="process" className="process-tabs-section" style={{ background: '#18161A', padding: '80px 0', position: 'relative', zIndex: 1 }}>
       <div style={{ maxWidth: '1160px', margin: '0 auto', padding: '0 24px' }}>
-        <p className="reveal" style={{ fontSize: '11px', fontWeight: '700', color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '16px' }}>HOW IT WORKS</p>
-        <h2 className="reveal process-tabs__headline" style={{ '--delay': '80ms', fontSize: 'clamp(37px,4.6vw,60px)', fontWeight: '700', color: '#ffffff', letterSpacing: '-0.02em', lineHeight: 1, marginBottom: '38px' }}>
-          A system, <span style={{ color: 'var(--primary)' }}>not a service.</span>
+        <p className="reveal" style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '16px' }}>HOW IT WORKS</p>
+        <h2 className="reveal process-tabs__headline" style={{ '--delay': '80ms', fontSize: 'clamp(37px,4.6vw,60px)', color: '#ffffff', marginBottom: '38px' }}>
+          A system, <span style={{ color: 'var(--red)' }}>not a service.</span>
         </h2>
         <div className="process-tabs">
           <div className="process-tabs__bar" role="tablist" aria-label="How it works">
