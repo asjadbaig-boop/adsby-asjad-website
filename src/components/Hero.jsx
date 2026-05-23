@@ -46,8 +46,8 @@ export default function Hero() {
           </p>
 
           <div className="hero__ctas">
-            <a href="https://wa.me/9778115675?text=Hi%20Asjad%2C%20I%20want%20to%20get%20a%20free%20ads%20audit%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-primary" ref={btn1Ref}>Get My Free Ads Audit &rarr;</a>
-            <a href="#results" className="btn-ghost hero__dark-btn" ref={btn2Ref}>See Proof &darr;</a>
+            <a href="https://wa.me/9778115675?text=Hi%20Asjad%2C%20I%20want%20to%20get%20a%20free%20ads%20audit%20for%20my%20business." target="_blank" rel="noopener noreferrer" className="btn-primary" ref={btn1Ref}>Get My Free Ads Audit →</a>
+            <a href="#results" className="btn-ghost hero__dark-btn" ref={btn2Ref}>See Proof ↓</a>
           </div>
 
           <p className="hero__microcopy">

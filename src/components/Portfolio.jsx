@@ -1,115 +1,130 @@
-import { useEffect, useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 
-const CASES = [
+const CAMPAIGNS = [
   {
+    id: 1,
+    name: 'Furniture Lead Gen',
     tag: 'Lead Generation',
-    headline: 'Real estate brand scales to 800 leads in 60 days',
-    metrics: [
-      { value: '800+', label: 'Leads Generated' },
-      { value: '62%', label: 'CPL Reduction' },
+    metric: 'CPL reduced significantly',
+    pdfLink: '#',
+    chartData: [
+      { day: 'W1', cpl: 45, leads: 12 },
+      { day: 'W2', cpl: 38, leads: 18 },
+      { day: 'W3', cpl: 29, leads: 27 },
+      { day: 'W4', cpl: 22, leads: 35 },
     ],
-    desc: 'Rebuilt the campaign structure and fixed a pixel misfiring on form submissions. Overhauled the creative stack. Lead volume tripled in four weeks.',
+    improvement: '-51%',
+    improvementLabel: 'CPL drop',
   },
   {
-    tag: 'E-Commerce',
-    headline: 'Fashion brand hits 3.8x ROAS on a modest budget',
-    metrics: [
-      { value: '3.8x', label: 'Return on Ad Spend' },
-      { value: '41%', label: 'Lower CPA' },
+    id: 2,
+    name: 'Insurance Campaign',
+    tag: 'Insurance',
+    metric: 'Consistent lead flow',
+    pdfLink: '#',
+    chartData: [
+      { day: 'W1', cpl: 60, leads: 8 },
+      { day: 'W2', cpl: 52, leads: 14 },
+      { day: 'W3', cpl: 41, leads: 22 },
+      { day: 'W4', cpl: 33, leads: 31 },
     ],
-    desc: 'Found audience overlap across 11 ad sets and consolidated the campaigns. Introduced UGC creative. Cost per purchase dropped by half.',
+    improvement: '-45%',
+    improvementLabel: 'CPL drop',
   },
   {
-    tag: 'Live Events',
-    headline: 'Coaching launch fills 400 webinar seats in 7 days',
-    metrics: [
-      { value: '400', label: 'Seats Filled' },
-      { value: '7 days', label: 'Campaign Window' },
+    id: 3,
+    name: 'Event Registration',
+    tag: 'Events',
+    metric: 'High registration volume',
+    pdfLink: '#',
+    chartData: [
+      { day: 'W1', cpl: 18, leads: 40 },
+      { day: 'W2', cpl: 14, leads: 68 },
+      { day: 'W3', cpl: 11, leads: 95 },
+      { day: 'W4', cpl: 9, leads: 124 },
     ],
-    desc: 'Full funnel from cold traffic to registration. Video hooks tested across three formats. Retargeting sequence turned 60% of registrants into live attendees.',
+    improvement: '-50%',
+    improvementLabel: 'CPR drop',
   },
   {
-    tag: 'Local Services',
-    headline: 'Home services brand cuts cost per lead below $4',
-    metrics: [
-      { value: '$3.80', label: 'Cost Per Lead' },
-      { value: '5x', label: 'Lead Volume Increase' },
+    id: 4,
+    name: 'Zero to 383 Leads',
+    tag: 'Lead Generation',
+    metric: 'Full funnel from scratch',
+    pdfLink: '#',
+    chartData: [
+      { day: 'W1', cpl: 0, leads: 0 },
+      { day: 'W2', cpl: 55, leads: 28 },
+      { day: 'W3', cpl: 38, leads: 72 },
+      { day: 'W4', cpl: 28, leads: 110 },
     ],
-    desc: 'Geo-targeted campaigns with hyper-local creative. Replaced generic stock imagery with real project photos. Quality score improved, CPL dropped immediately.',
+    improvement: '+383',
+    improvementLabel: 'Total leads',
   },
 ]
 
-export default function Portfolio() {
-  const sectionRef = useRef(null)
-  const accentRef = useRef(null)
-
-  useEffect(() => {
-    const el = accentRef.current
-    if (!el) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      el.classList.add('visible')
-      return
-    }
-    const obs = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        el.classList.add('visible')
-        obs.disconnect()
-      }
-    }, { threshold: 0.6 })
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [])
-
-  useEffect(() => {
-    const section = sectionRef.current
-    if (!section) return
-    const cards = section.querySelectorAll('.portfolio-card')
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      cards.forEach((card) => card.classList.add('visible'))
-      return
-    }
-    const obs = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return
-      cards.forEach((card) => card.classList.add('visible'))
-      obs.disconnect()
-    }, { threshold: 0.15 })
-    obs.observe(section)
-    return () => obs.disconnect()
-  }, [])
-
+function MiniChart({ data }) {
+  const max = Math.max(...data.map(d => d.leads))
   return (
-    <section id="portfolio" ref={sectionRef} style={{ background: 'var(--surface)', padding: '80px 0', position: 'relative', zIndex: 1 }}>
-      <div style={{ position: 'relative' }}>
-        <div className="dot-grid" aria-hidden="true" />
-        <div style={{ maxWidth: '1160px', margin: '0 auto', padding: '0 24px', position: 'relative', zIndex: 1 }}>
-          <p className="reveal" style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px' }}>RESULTS</p>
-          <h2 className="reveal" style={{ '--delay': '80ms', fontSize: 'clamp(32px,4.6vw,51px)', color: 'var(--text-1)', marginBottom: '8px', lineHeight: 1 }}>
-            Campaigns <span className="headline-accent" ref={accentRef}>we've run.</span>
-          </h2>
-          <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '24px' }}>
-            {CASES.map((item, index) => (
-              <div
-                key={item.headline}
-                className="portfolio-card"
-                style={{ transitionDelay: `${index * 100}ms`, background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-lg)', boxShadow: 'var(--shadow-1)', padding: '32px' }}
-                onMouseEnter={(event) => { event.currentTarget.style.transform = 'translateY(-4px)'; event.currentTarget.style.boxShadow = 'var(--shadow-3)'; event.currentTarget.style.borderColor = 'rgba(232,41,30,0.2)' }}
-                onMouseLeave={(event) => { event.currentTarget.style.transform = 'translateY(0)'; event.currentTarget.style.boxShadow = 'var(--shadow-1)'; event.currentTarget.style.borderColor = 'var(--border-1)' }}
-              >
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '10px', fontWeight: '700', color: 'var(--red)', textTransform: 'uppercase', letterSpacing: '1.5px', marginBottom: '12px', background: 'var(--red-dim)', display: 'inline-block', padding: '3px 10px', borderRadius: 'var(--r-full)' }}>{item.tag}</p>
-                <h3 style={{ fontFamily: 'var(--font-sans)', fontSize: '18px', fontWeight: '700', color: 'var(--text-1)', lineHeight: 1.3, marginBottom: '20px' }}>{item.headline}</h3>
-                <div style={{ display: 'flex', gap: '32px', marginBottom: '20px' }}>
-                  {item.metrics.map((metric) => (
-                    <div key={metric.label}>
-                      <div style={{ fontFamily: "'Fraunces', serif", fontSize: '28px', fontWeight: '900', color: 'var(--text-1)', letterSpacing: '-0.05em', lineHeight: 1 }}>{metric.value}</div>
-                      <div style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', fontWeight: '300', color: 'var(--text-3)', marginTop: '4px' }}>{metric.label}</div>
-                    </div>
-                  ))}
-                </div>
-                <p style={{ fontFamily: 'var(--font-sans)', fontSize: '14px', fontWeight: '300', color: 'var(--text-2)', lineHeight: 1.65, margin: 0 }}>{item.desc}</p>
-              </div>
-            ))}
-          </div>
+    <div style={{ display: 'flex', alignItems: 'flex-end', gap: '6px', height: '48px', padding: '4px 0' }}>
+      {data.map((d, i) => (
+        <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3px', flex: 1 }}>
+          <div style={{
+            width: '100%',
+            height: `${(d.leads / (max || 1)) * 40}px`,
+            background: `rgba(232,41,30,${0.3 + (i / data.length) * 0.7})`,
+            borderRadius: '3px 3px 0 0',
+            transition: 'height 600ms cubic-bezier(0.16,1,0.3,1)',
+            minHeight: '4px',
+          }} />
+          <span style={{ fontSize: '9px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)' }}>{d.day}</span>
         </div>
+      ))}
+    </div>
+  )
+}
+
+export default function Portfolio() {
+  return (
+    <section id="portfolio" style={{ background: 'var(--bg-base)', padding: '80px 0' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+        <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>CAMPAIGN RESULTS</p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 44px)', color: 'var(--text-1)', marginBottom: '8px', letterSpacing: '-0.03em' }}>
+          Campaigns we've run.
+        </h2>
+        <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '40px', fontFamily: 'var(--font-sans)' }}>Click any card to view the full campaign report.</p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
+          {CAMPAIGNS.map((c) => (
+            <a
+              key={c.id}
+              href={c.pdfLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: 'none', display: 'block', background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-lg)', padding: '20px', boxShadow: 'var(--shadow-1)', cursor: 'pointer', transition: 'transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-3)'; e.currentTarget.style.borderColor = 'rgba(232,41,30,0.25)' }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-1)'; e.currentTarget.style.borderColor = 'var(--border-1)' }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+                <div>
+                  <span style={{ display: 'inline-block', fontSize: '10px', fontWeight: '700', color: '#E8291E', background: 'rgba(232,41,30,0.08)', padding: '3px 10px', borderRadius: '999px', marginBottom: '8px', letterSpacing: '0.04px', fontFamily: 'var(--font-sans)' }}>{c.tag}</span>
+                  <h3 style={{ fontSize: '15px', fontWeight: '700', color: 'var(--text-1)', margin: 0, lineHeight: '1.3', fontFamily: 'var(--font-sans)' }}>{c.name}</h3>
+                </div>
+                <span style={{ fontSize: '18px', color: 'rgba(232,41,30,0.4)' }}>↗</span>
+              </div>
+              <MiniChart data={c.chartData} />
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', paddingTop: '12px', borderTop: '1px solid var(--border-1)' }}>
+                <span style={{ fontSize: '12px', color: 'var(--text-2)', fontFamily: 'var(--font-sans)' }}>{c.metric}</span>
+                <div style={{ textAlign: 'right' }}>
+                  <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '20px', color: '#E8291E', letterSpacing: '-0.03em' }}>{c.improvement}</div>
+                  <div style={{ fontSize: '10px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)' }}>{c.improvementLabel}</div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+        <p style={{ fontSize: '11px', color: 'var(--text-3)', textAlign: 'center', marginTop: '20px', fontFamily: 'var(--font-sans)' }}>
+          To link real PDFs: update the <code>pdfLink</code> field in the CAMPAIGNS array with your Google Drive share links.
+        </p>
       </div>
     </section>
   )
