@@ -1,9 +1,9 @@
 const AD_CREATIVES = [
-  { id: 1, type: 'placeholder', label: 'Ad Creative 1', src: null },
-  { id: 2, type: 'placeholder', label: 'Ad Creative 2', src: null },
-  { id: 3, type: 'placeholder', label: 'Ad Creative 3', src: null },
-  { id: 4, type: 'placeholder', label: 'Ad Creative 4', src: null },
-  { id: 5, type: 'placeholder', label: 'Ad Creative 5', src: null },
+  { id: 1, type: 'image', label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
+  { id: 2, type: 'image', label: 'Ad Creative 2', src: '/ads/Artboard 6.png' },
+  { id: 3, type: 'image', label: 'Ad Creative 3', src: '/ads/Artboard 7.png' },
+  { id: 4, type: 'image', label: 'Ad Creative 4', src: '/ads/Artboard 8.png' },
+  { id: 5, type: 'image', label: 'Ad Creative 5', src: '/ads/Artboard 9.png' },
 ]
 
 function AdCard({ item }) {
