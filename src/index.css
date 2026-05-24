@@ -389,7 +389,6 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.03em; }
   justify-content: center;
   width: 40px;
   height: 40px;
-  margin-left: auto;
   flex-shrink: 0;
   position: relative;
   z-index: 1002;
@@ -1381,6 +1380,7 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.03em; }
   .nav-outer { padding: 0 20px; }
   .nav__links { display: none; }
   .nav__cta { display: none; }
+  .nav-whatsapp-btn { display: none !important; }
   .nav__hamburger { display: flex; }
 
   /* ── HERO ── */

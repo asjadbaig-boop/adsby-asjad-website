@@ -47,47 +47,49 @@ export default function Nav() {
           ))}
         </ul>
 
-        <a
-          href="https://wa.me/9778115675?text=Hi%20Asjad%2C%20I%20want%20to%20get%20a%20free%20ads%20audit%20for%20my%20business."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="nav-whatsapp-btn"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '8px',
-            background: 'var(--red)',
-            color: '#ffffff',
-            fontFamily: "'DM Sans', sans-serif",
-            fontWeight: '600',
-            fontSize: '12px',
-            padding: '0 16px',
-            height: '34px',
-            borderRadius: 'var(--r-sm)',
-            textDecoration: 'none',
-            whiteSpace: 'nowrap',
-            boxShadow: '0 2px 8px var(--red-glow)',
-          }}
-        >
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-            <path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.5a8.5 8.5 0 01-4.341-1.19l-.31-.186-3.23.847.862-3.145-.202-.323A8.5 8.5 0 1120.5 12a8.51 8.51 0 01-8.501 8.5z"/>
-          </svg>
-          WhatsApp
-        </a>
+        <div className="nav-right" style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto' }}>
+          <a
+            href="https://wa.me/9778115675?text=Hi%20Asjad%2C%20I%20want%20to%20get%20a%20free%20ads%20audit%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="nav-whatsapp-btn"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: 'var(--red)',
+              color: '#ffffff',
+              fontFamily: "'DM Sans', sans-serif",
+              fontWeight: '600',
+              fontSize: '12px',
+              padding: '0 16px',
+              height: '34px',
+              borderRadius: 'var(--r-sm)',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              boxShadow: '0 2px 8px var(--red-glow)',
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+              <path d="M11.999 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.5a8.5 8.5 0 01-4.341-1.19l-.31-.186-3.23.847.862-3.145-.202-.323A8.5 8.5 0 1120.5 12a8.51 8.51 0 01-8.501 8.5z"/>
+            </svg>
+            WhatsApp
+          </a>
 
-        <button
-          className="nav__hamburger"
-          onClick={() => setOpen((value) => !value)}
-          aria-label="Open menu"
-          aria-expanded={open}
-        >
-          <span className="nav__hamburger-lines">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
+          <button
+            className="nav__hamburger"
+            onClick={() => setOpen((value) => !value)}
+            aria-label="Open menu"
+            aria-expanded={open}
+          >
+            <span className="nav__hamburger-lines">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
+        </div>
       </nav>
 
       <div
