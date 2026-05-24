@@ -79,18 +79,14 @@ export default function Nav() {
         <button
           className="nav__hamburger"
           onClick={() => setOpen((value) => !value)}
-          aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-label="Open menu"
           aria-expanded={open}
         >
-          {open ? (
-            <span className="nav__close nav-close-btn">✕</span>
-          ) : (
-            <span className="nav__hamburger-lines">
-              <span />
-              <span />
-              <span />
-            </span>
-          )}
+          <span className="nav__hamburger-lines">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
       </nav>
 
@@ -100,6 +96,28 @@ export default function Nav() {
         aria-modal="true"
         onClick={close}
       >
+        <button
+          onClick={() => setOpen(false)}
+          style={{
+            position: 'fixed',
+            top: '12px',
+            right: '20px',
+            zIndex: 99999,
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '8px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          aria-label="Close menu"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <line x1="2" y1="2" x2="18" y2="18" stroke="#E8291E" strokeWidth="2.5" strokeLinecap="round"/>
+            <line x1="18" y1="2" x2="2" y2="18" stroke="#E8291E" strokeWidth="2.5" strokeLinecap="round"/>
+          </svg>
+        </button>
         {links.map((link, index) => (
           <a
             key={link.href}
