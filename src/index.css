@@ -416,6 +416,10 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.03em; }
   line-height: 1;
 }
 
+.nav-close-btn {
+  color: #E8291E !important;
+}
+
 .nav__overlay {
   display: none;
   position: fixed;

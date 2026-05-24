@@ -83,7 +83,7 @@ export default function Nav() {
           aria-expanded={open}
         >
           {open ? (
-            <span className="nav__close">✕</span>
+            <span className="nav__close nav-close-btn">✕</span>
           ) : (
             <span className="nav__hamburger-lines">
               <span />
