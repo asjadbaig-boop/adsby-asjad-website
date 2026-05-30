@@ -1,8 +1,20 @@
 const MILESTONES = [
-  { age: '2022', text: 'Started managing Meta Ads for my first client. Learned by doing, not theory.' },
-  { age: '2023', text: 'Scaled to 3 to 5 client accounts simultaneously. $50k+ in ad spend managed.' },
-  { age: '2024', text: 'Crossed $200k in total ad spend managed. Webinar campaigns, lead gen funnels, GHL automations.' },
-  { age: '2025', text: 'Built AdsByAsjad full-time. Now running paid campaigns for clients across India and internationally.' },
+  {
+    age: '2022',
+    text: 'Started managing Meta Ads for my first client. Learned by doing, not by theory.',
+  },
+  {
+    age: '2023',
+    text: 'Scaled to 3 to 5 accounts at a time. Built the first GHL automation flows for lead follow-up.',
+  },
+  {
+    age: '2024',
+    text: 'Crossed $200k in total ad spend managed. Ran webinar campaigns, live event funnels, and lead gen across multiple niches.',
+  },
+  {
+    age: '2025',
+    text: 'Built AdsByAsjad full-time. Now running paid campaigns for clients across India and internationally.',
+  },
 ]
 
 export default function FounderStory() {

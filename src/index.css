@@ -2632,3 +2632,28 @@ h2 span[style*="color: var(--primary)"] {
     padding-right: 20px !important;
   }
 }
+
+/* ─── Hero mobile photo ──────────────────────────────────── */
+@keyframes heroFloat {
+  0%   { transform: translateX(0px) rotate(-0.2deg); }
+  50%  { transform: translateX(5px) rotate(0.2deg); }
+  100% { transform: translateX(0px) rotate(-0.2deg); }
+}
+
+@media (min-width: 769px) {
+  .hero-mobile-photo {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-mobile-photo {
+    display: flex !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-mobile-photo * {
+    animation: none !important;
+  }
+}

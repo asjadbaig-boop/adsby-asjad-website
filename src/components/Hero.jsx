@@ -48,11 +48,112 @@ export default function Hero() {
             Free. No commitment. Takes 2 minutes.
           </p>
 
+          {/* Mobile founder photo — hidden on desktop */}
+          <div
+            className="hero-mobile-photo"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              marginBottom: '28px',
+              marginTop: '20px',
+            }}
+          >
+            <div style={{
+              position: 'relative',
+              width: '170px',
+              height: '220px',
+            }}>
+              {/* Glow behind image */}
+              <div style={{
+                position: 'absolute',
+                inset: '-12px',
+                borderRadius: '24px',
+                background: 'radial-gradient(ellipse at center, rgba(232,41,30,0.35) 0%, rgba(232,41,30,0.1) 50%, transparent 75%)',
+                zIndex: 0,
+                filter: 'blur(8px)',
+              }} />
+              {/* Photo container */}
+              <div style={{
+                position: 'relative',
+                width: '170px',
+                height: '220px',
+                borderRadius: '16px',
+                overflow: 'hidden',
+                border: '1.5px solid rgba(232,41,30,0.3)',
+                boxShadow: '0 0 0 1.5px rgba(232,41,30,0.35), 0 8px 32px rgba(232,41,30,0.25), 0 24px 64px rgba(0,0,0,0.45)',
+                animation: 'heroFloat 4s ease-in-out infinite',
+                zIndex: 1,
+                background: 'rgba(255,255,255,0.04)',
+              }}>
+                <img
+                  src="/asjadbaigimage.jpg"
+                  alt="Asjad"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: 'top center',
+                    transform: 'scale(1.14)',
+                    transformOrigin: 'top center',
+                    display: 'block',
+                  }}
+                  onError={e => {
+                    e.target.src = '/asjadbaigimage.png'
+                    e.target.onerror = () => {
+                      e.target.src = '/asjadbaigimage.webp'
+                      e.target.onerror = () => { e.target.style.display = 'none' }
+                    }
+                  }}
+                />
+                {/* Red inner glow overlay */}
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  borderRadius: '16px',
+                  background: 'linear-gradient(135deg, rgba(232,41,30,0.08) 0%, transparent 50%, rgba(232,41,30,0.06) 100%)',
+                  zIndex: 2,
+                  pointerEvents: 'none',
+                }} />
+                {/* Subtle gradient overlay at bottom */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  height: '60px',
+                  background: 'linear-gradient(to top, rgba(24,22,26,0.6), transparent)',
+                  zIndex: 2,
+                }} />
+                {/* Available badge */}
+                <div style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  zIndex: 3,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '5px',
+                  background: 'rgba(24,22,26,0.85)',
+                  backdropFilter: 'blur(8px)',
+                  WebkitBackdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  borderRadius: '999px',
+                  padding: '4px 10px',
+                  whiteSpace: 'nowrap',
+                }}>
+                  <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#22c55e', flexShrink: 0 }} />
+                  <span style={{ fontSize: '10px', fontWeight: '600', color: '#ffffff', fontFamily: 'var(--font-sans)' }}>Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div className="stats-strip">
             {[
               { value: '$200k+', label: 'Ad spend managed' },
               { value: '7,000+', label: 'Leads generated' },
-              { value: '1.5+ yrs', label: 'Hands-on media buying' },
+              { value: '3+', label: 'Years experience' },
             ].map((stat, i) => (
               <div key={i} className="stats-strip-item">
                 <div className="stat-value">{stat.value}</div>
@@ -77,10 +178,16 @@ export default function Hero() {
             position: 'relative',
           }}>
             <img
-              src="/profile.jpg"
+              src="/asjadbaigimage.jpg"
               alt="Asjad"
               style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
-              onError={e => { e.target.style.display = 'none' }}
+              onError={e => {
+                e.target.src = '/asjadbaigimage.png'
+                e.target.onerror = () => {
+                  e.target.src = '/asjadbaigimage.webp'
+                  e.target.onerror = () => { e.target.style.display = 'none' }
+                }
+              }}
             />
             <div style={{ textAlign: 'center', padding: '24px', position: 'relative', zIndex: 1 }}>
               <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '48px', color: 'var(--text-4)' }}>A</div>
