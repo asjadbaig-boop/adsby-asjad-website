@@ -1,14 +1,17 @@
 import { useEffect, useRef } from 'react'
+import AnnouncementBar from './components/AnnouncementBar'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
+import BrandTicker from './components/BrandTicker'
 import HiddenProblems from './components/HiddenProblems'
-import HiringSection from './components/HiringSection'
 import MidCTA from './components/MidCTA'
 import Services from './components/Services'
 import HowItWorks from './components/HowItWorks'
 import Results from './components/Results'
 import Testimonials from './components/Testimonials'
+import FounderStory from './components/FounderStory'
 import Portfolio from './components/Portfolio'
+import HiringSection from './components/HiringSection'
 import AdShowcase from './components/AdShowcase'
 import FAQ from './components/FAQ'
 import Contact from './components/Contact'
@@ -60,12 +63,12 @@ export default function App() {
     <>
       <BgMesh />
       <ScrollProgress />
+      <AnnouncementBar />
       <Nav />
       <main>
         <Hero />
-        <Ticker />
+        <BrandTicker />
         <HiddenProblems />
-        <HiringSection />
         <MidCTA />
         <SectionDivider />
         <Services />
@@ -83,10 +86,13 @@ export default function App() {
         <Results />
         <Ticker reverse />
         <Testimonials />
+        <FounderStory />
         <Portfolio />
-        <AdShowcase />
+        <HiringSection />
         <SectionDivider />
         <FAQ />
+        <AdShowcase />
+        <Ticker />
         <Contact />
       </main>
     </>

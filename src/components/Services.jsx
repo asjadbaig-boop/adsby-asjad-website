@@ -3,27 +3,27 @@ import { useRef, useEffect } from 'react'
 const CARDS = [
   {
     title: 'Strategy & Account Setup',
-    body: 'I build the account structure before anything goes live. Objectives, audiences, pixel, and tracking all sorted before a single dollar is spent.',
+    body: 'Before anything goes live, I build the structure properly. Objectives, audiences, pixel, and tracking all sorted before a single dollar is spent.',
   },
   {
     title: 'Creative & Ad Production',
-    body: 'Creatives built around what the data says converts, not what looks good in a deck. Hook first, format second.',
+    body: 'Creatives built around what converts, not what looks good in a deck. Hook first, format second.',
   },
   {
     title: 'Ongoing Management',
-    body: 'Daily checks, budget moves, and creative swaps when the numbers start slipping. The work that keeps a campaign alive week after week.',
+    body: 'Daily checks, budget moves, and creative swaps when the numbers start slipping. The unglamorous work that keeps a campaign alive.',
   },
   {
     title: 'Email, SMS & WhatsApp Automation',
-    body: 'Follow-up sequences and re-engagement flows connected to your campaigns, all built inside GoHighLevel.',
+    body: 'Follow-up sequences, reminders, and re-engagement flows connected to your campaigns. All set up in GoHighLevel.',
   },
   {
     title: 'Live Event Campaigns',
-    body: 'Full paid campaign for your live session. Strategy, landing page, daily management. You deliver, I fill the room.',
+    body: 'Full paid campaign for your live session. Strategy, landing page, daily management, post-event follow-up. You show up and deliver. I make sure the room is full.',
   },
   {
     title: 'Transparent Reporting',
-    body: 'Weekly report. What the money did, what changed, what I am doing about it. Nothing inflated, nothing hidden.',
+    body: "Weekly report. What the money did, what changed, what I'm doing about it. Nothing inflated, nothing hidden.",
   },
 ]
 
@@ -89,6 +89,50 @@ export default function Services() {
               </div>
             </div>
           ))}
+        </div>
+        <div style={{
+          marginTop: '48px',
+          padding: '28px 32px',
+          background: 'var(--bg-elevated)',
+          border: '1px solid var(--border-1)',
+          borderRadius: 'var(--r-lg)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '16px',
+        }}>
+          <div>
+            <p style={{ fontFamily: 'var(--font-sans)', fontWeight: '700', fontSize: '16px', color: 'var(--text-1)', margin: '0 0 4px' }}>
+              Not sure which service you need?
+            </p>
+            <p style={{ fontFamily: 'var(--font-sans)', fontWeight: '300', fontSize: '13px', color: 'var(--text-2)', margin: 0 }}>
+              Message me and I'll tell you exactly what your account needs.
+            </p>
+          </div>
+          <a
+            href="https://wa.me/9778115675?text=Hi%20Asjad%2C%20I%20want%20to%20get%20a%20free%20ads%20audit%20for%20my%20business."
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              background: '#E8291E',
+              color: '#ffffff',
+              fontWeight: '600',
+              fontSize: '13px',
+              padding: '0 20px',
+              height: '40px',
+              borderRadius: 'var(--r-sm)',
+              textDecoration: 'none',
+              whiteSpace: 'nowrap',
+              fontFamily: 'var(--font-sans)',
+              flexShrink: 0,
+            }}
+          >
+            Let's Talk ↗
+          </a>
         </div>
       </div>
     </section>

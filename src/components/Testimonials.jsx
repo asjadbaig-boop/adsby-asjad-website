@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 const TESTIMONIALS = [
-  { quote: 'In a short span of time, he showed great enthusiasm, dedication, and ownership. His results-oriented approach made a real impact on the brands we worked with. Strong potential as a performance marketer.', name: 'Urvashi Rangwani', role: 'CEO, ABM' },
-  { quote: 'He handled campaigns end to end, not just budgets, but the complete analytical side including audience strategy, optimisation, reporting, and problem-solving.', name: 'Zain Siddiqui', role: 'Founder, Startup Nebulla' },
-  { quote: 'Asjad went above and beyond. Very impressed with his campaign management and the results. He exceeded my expectations to the point that I came back for another project.', name: 'Monuaf', role: 'Client' },
+  { quote: 'In a short span of time he showed real ownership over the work. His results-first approach had a direct impact on the brands we worked on. Strong performance marketer.', name: 'Urvashi Rangwani', role: 'CEO, ABM' },
+  { quote: 'He handled the full campaign, not just the budgets. Audience strategy, optimisation, reporting, problem-solving. He owned the whole thing.', name: 'Zain Siddiqui', role: 'Founder, Startup Nebulla' },
+  { quote: 'Asjad did more than what was asked. The campaign results were genuinely impressive. I came back for a second project.', name: 'Monuaf', role: 'Client' },
 ]
 
 export default function Testimonials() {

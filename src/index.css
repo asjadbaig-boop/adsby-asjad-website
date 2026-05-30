@@ -2616,3 +2616,19 @@ h2 span[style*="color: var(--primary)"] {
     transition: none !important;
   }
 }
+
+/* ─── Change 9: Mobile section rhythm ────────────────────── */
+@media (max-width: 768px) {
+  section {
+    padding-top: 56px !important;
+    padding-bottom: 56px !important;
+  }
+  section h2 {
+    font-size: clamp(26px, 8vw, 38px) !important;
+  }
+  .section-inner,
+  section > div {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}

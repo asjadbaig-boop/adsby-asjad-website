@@ -2,12 +2,6 @@ import { useRef } from 'react'
 import useMagnetic from '../hooks/useMagnetic'
 
 const TOOLS = ['Meta', 'Pixel', 'GTM', 'GHL', 'WA', 'GA4', 'Ads']
-const BENTO = [
-  { label: 'CPL reduced', value: '-70%', tag: 'Live campaign' },
-  { label: 'Lead volume', value: '+480%', tag: 'After optimisation' },
-  { label: 'LP conversion', value: '+124%', tag: 'Same traffic' },
-  { label: 'vs prev campaign', value: '-79%', tag: 'CPR improvement' },
-]
 
 export default function Hero() {
   const btn1Ref = useRef(null)
@@ -30,7 +24,7 @@ export default function Hero() {
         <div className="hero__copy">
           <div className="hero__identity hero-identity-pill">
             <div className="hero__avatar">A</div>
-            <span>Meta Ads Media Buyer - Lead Generation Focus</span>
+            <span>Meta Ads Media Buyer · Lead Generation Focus</span>
             <span className="hero__status-dot" />
             <span className="hero__status">Available</span>
           </div>
@@ -68,14 +62,41 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero__visual hero-bento" aria-hidden="true">
-          {BENTO.map((item) => (
-            <div className="hero-bento__card" key={item.label}>
-              <span className="hero-bento__tag">{item.tag}</span>
-              <strong>{item.value}</strong>
-              <p>{item.label}</p>
+        <div className="hero__visual hero-bento" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }} aria-hidden="true">
+          <div style={{
+            width: '100%',
+            maxWidth: '340px',
+            aspectRatio: '3/4',
+            borderRadius: 'var(--r-xl)',
+            overflow: 'hidden',
+            background: 'rgba(0,0,0,0.04)',
+            border: '1px solid var(--border-2)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            position: 'relative',
+          }}>
+            <img
+              src="/profile.jpg"
+              alt="Asjad"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }}
+              onError={e => { e.target.style.display = 'none' }}
+            />
+            <div style={{ textAlign: 'center', padding: '24px', position: 'relative', zIndex: 1 }}>
+              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '48px', color: 'var(--text-4)' }}>A</div>
+              <p style={{ fontSize: '12px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)', margin: 0 }}>Add profile.jpg to /public</p>
             </div>
-          ))}
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+            <div style={{ display: 'flex', gap: '3px' }}>
+              {[1,2,3,4,5].map(i => (
+                <span key={i} style={{ color: '#E8291E', fontSize: '14px' }}>★</span>
+              ))}
+            </div>
+            <p style={{ fontSize: '11px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)', margin: 0, textAlign: 'center' }}>
+              Trusted by 10+ clients across India &amp; UK
+            </p>
+          </div>
         </div>
       </div>
 

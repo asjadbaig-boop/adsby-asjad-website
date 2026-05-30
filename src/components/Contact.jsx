@@ -59,6 +59,17 @@ export default function Contact() {
         <p style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', color: 'var(--text-3)', marginTop: '10px', textAlign: 'center', marginBottom: '0' }}>
           Free. No commitment. I reply within 2 hours.
         </p>
+        <p style={{
+          fontFamily: 'var(--font-sans)',
+          fontSize: '12px',
+          fontWeight: '400',
+          color: 'rgba(255,255,255,0.3)',
+          marginTop: '24px',
+          textAlign: 'center',
+          letterSpacing: '0.01em',
+        }}>
+          I take on 3 new clients a month. First come, first served.
+        </p>
       </div>
 
       <div className="footer-inner" style={{ borderTop: '1px solid rgba(255,255,255,0.06)', padding: '24px 40px', maxWidth: '1160px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '16px' }}>
@@ -67,20 +78,7 @@ export default function Contact() {
           <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontSize: '16px', color: 'var(--text-3)' }}>by</span>
           <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 900, fontSize: '16px', color: '#E8291E', letterSpacing: '-0.04em' }}>Asjad</span>
         </a>
-        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', fontWeight: '400', color: 'var(--text-3)' }}>(c) 2026 AdsByAsjad. All rights reserved.</span>
-        <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
-          {[
-            { label: 'Asjadbaigqaz@gmail.com', href: 'mailto:Asjadbaigqaz@gmail.com' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/asjad-baig/' },
-            { label: 'Instagram', href: 'https://instagram.com/itsasjadbaig/' },
-          ].map((link) => (
-            <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer"
-              style={{ fontFamily: 'var(--font-sans)', fontSize: '13px', fontWeight: '400', color: 'var(--text-3)', transition: 'color 0.15s ease' }}
-              onMouseEnter={(event) => { event.currentTarget.style.color = 'var(--red)' }}
-              onMouseLeave={(event) => { event.currentTarget.style.color = 'var(--text-3)' }}
-            >{link.label}</a>
-          ))}
-        </div>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '12px', fontWeight: '400', color: 'var(--text-3)' }}>© 2026 AdsByAsjad</span>
       </div>
     </footer>
   )

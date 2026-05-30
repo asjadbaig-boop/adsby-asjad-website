@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect } from 'react'
 
 const STEPS = [
-  { n: '01', tab: 'Audit', title: "First look at what's wrong", body: "I go through your account and find what's wasting money. No deck, no presentation, just a straight answer on what to fix." },
-  { n: '02', tab: 'Strategy', title: 'Plan before spending', body: 'Campaign objective, audience structure, creative direction, budget split, all mapped out before anything goes live.' },
-  { n: '03', tab: 'Build', title: 'Structure everything properly', body: 'Creatives, copy, landing page notes, tracking setup, campaign structure, all built to the plan.' },
-  { n: '04', tab: 'Launch', title: 'Monitor and move fast', body: 'Daily checks, budget moves, creative swaps when the numbers start slipping.' },
-  { n: '05', tab: 'Report', title: 'Plain English every week', body: 'What changed, why it changed, and what comes next. Nothing inflated, nothing hidden.' },
+  { n: '01', tab: 'Audit', title: "First look at what's wrong", body: "I go through your account and find what's wasting money. No deck, no presentation. Just a straight answer on what to fix." },
+  { n: '02', tab: 'Strategy', title: 'Plan before spending', body: 'Campaign objective, audience structure, creative direction, budget split. All mapped out before anything goes live.' },
+  { n: '03', tab: 'Build', title: 'Structure everything properly', body: 'Creatives, copy, landing page notes, tracking setup, campaign structure. All built to the plan.' },
+  { n: '04', tab: 'Launch', title: 'Monitor and move fast', body: 'Daily monitoring, early signal reads, budget reallocation, creative changes when the data asks for them.' },
+  { n: '05', tab: 'Report', title: 'Plain English every week', body: 'Every week, a plain-English breakdown of what changed, why it changed, and what comes next.' },
 ]
 
 export default function HowItWorks() {

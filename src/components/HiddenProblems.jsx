@@ -37,11 +37,24 @@ function ProblemItem({ n, title, body }) {
     <div style={{ background: open ? 'var(--red-dim)' : 'rgba(255,255,255,0.03)', border: open ? '1px solid rgba(232,41,30,0.2)' : '1px solid rgba(255,255,255,0.06)', borderRadius: 'var(--r-md)', marginBottom: '8px', transition: 'background 300ms ease, border-color 300ms ease', padding: '0 16px' }}>
       <div
         onClick={() => setOpen((value) => !value)}
-        style={{ display: 'flex', alignItems: 'center', gap: '20px', padding: '22px 0', cursor: 'pointer', userSelect: 'none' }}
+        style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '22px 0', cursor: 'pointer', userSelect: 'none' }}
       >
-        <span style={{ fontSize: '11px', fontWeight: '700', color: 'var(--red)', letterSpacing: '1px', minWidth: '28px', flexShrink: 0 }}>{n}</span>
-        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '17px', fontWeight: '600', color: '#ffffff', flex: 1, lineHeight: 1.3 }}>{title}</span>
-        <span style={{ fontSize: '16px', color: 'var(--red)', flexShrink: 0, transform: open ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 300ms ease', display: 'inline-block' }}>v</span>
+        <span style={{
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          background: 'rgba(232,41,30,0.15)',
+          border: '1px solid rgba(232,41,30,0.3)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          flexShrink: 0,
+          fontSize: '10px',
+          color: '#E8291E',
+          fontWeight: '700',
+        }}>✕</span>
+        <span style={{ fontFamily: 'var(--font-sans)', fontSize: '15px', fontWeight: '600', color: '#ffffff', flex: 1 }}>{title}</span>
+        <span style={{ color: '#E8291E', fontSize: '18px', transform: open ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform 300ms ease', display: 'inline-block', flexShrink: 0 }}>+</span>
       </div>
       <div style={{ overflow: 'hidden', maxHeight: open ? `${height}px` : '0px', transition: 'max-height 350ms ease' }}>
         <div ref={innerRef} style={{ paddingBottom: '22px', paddingLeft: '48px' }}>
@@ -62,6 +75,27 @@ export default function HiddenProblems() {
         </h2>
         <div className="reveal" style={{ '--delay': '160ms' }}>
           {PROBLEMS.map((problem) => <ProblemItem key={problem.n} {...problem} />)}
+          <div style={{
+            marginTop: '40px',
+            padding: '24px 28px',
+            background: 'rgba(232,41,30,0.08)',
+            border: '1px solid rgba(232,41,30,0.2)',
+            borderRadius: 'var(--r-md)',
+            textAlign: 'center',
+          }}>
+            <p style={{
+              fontFamily: 'var(--font-display)',
+              fontStyle: 'italic',
+              fontSize: 'clamp(16px, 3vw, 22px)',
+              color: '#ffffff',
+              margin: 0,
+              lineHeight: '1.4',
+              letterSpacing: '-0.01em',
+            }}>
+              You don't have an ads problem.{' '}
+              <span style={{ color: '#E8291E' }}>You have a strategy problem.</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>

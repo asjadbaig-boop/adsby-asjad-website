@@ -86,13 +86,13 @@ function MiniChart({ data }) {
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" style={{ background: 'var(--bg-base)', padding: '80px 0' }}>
+    <section id="portfolio" style={{ background: 'var(--bg-void)', padding: '80px 0' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
         <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>CAMPAIGN RESULTS</p>
         <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 44px)', color: 'var(--text-1)', marginBottom: '8px', letterSpacing: '-0.03em' }}>
           Campaigns we've run.
         </h2>
-        <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '40px', fontFamily: 'var(--font-sans)' }}>Click any card to view the full campaign report.</p>
+        <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '40px', fontFamily: 'var(--font-sans)' }}>Click any card to see the numbers.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
           {CAMPAIGNS.map((c) => (
             <a

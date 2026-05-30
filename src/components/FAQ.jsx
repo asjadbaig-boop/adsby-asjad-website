@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     q: 'How do you access my account?',
-    a: 'You add my Business Manager ID as a partner — 5 minutes in Business Settings. I get Manage Ads permission only. No passwords, no personal account access. Full control stays with you.',
+    a: 'You add my Business Manager ID as a partner. 5 minutes in Business Settings. I get Manage Ads permission only. No passwords, no personal account access. Full control stays with you.',
   },
   {
     q: 'Am I locked into a contract?',
@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: 'What makes this different from hiring an agency?',
-    a: "No agency markup. No account manager in the middle. You talk to the person running your ads, and that person is focused on one thing, lowering your cost per lead.",
+    a: "No agency markup. No account manager in the middle. You talk to the person running your ads, and that person is focused on one thing. Lowering your cost per lead.",
   },
 ]
 
