@@ -1,38 +1,35 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 
 const PROBLEMS = [
   {
     n: '01',
     title: "Budget going out, nothing coming back",
-    body: 'Duplicate events, browser extensions blocking fires, and mismatched domains silently inflate your conversions. You optimise for ghost leads and wonder why cost per qualified lead keeps rising.',
+    body: 'You check the account every morning and the spend keeps climbing. But the leads are either not coming or not converting. Something is wrong but nobody can tell you exactly what.',
   },
   {
     n: '02',
     title: "Works for two weeks, then dies, no one knows why",
-    body: 'Retargeting the same person four times from three campaigns. You bid against yourself, inflate CPMs, and burn spend on an audience that already converted or already said no.',
+    body: 'The first week looks great. Then costs start creeping up, leads slow down, and by week three the whole thing feels like it is on life support. Nobody changes anything and nobody knows why it stopped working.',
   },
   {
     n: '03',
     title: "Form fills that never pick up",
-    body: 'Frequency climbs past 3, CTR quietly drops, CPM ticks up. No alert fires. You keep running the ad that worked in week one while it silently kills your month-two numbers.',
+    body: 'People are submitting the form. The numbers look okay on paper. But when the sales team calls, half the numbers are wrong and the other half never answer. The leads exist but they are not real.',
   },
   {
     n: '04',
-    title: "Two hours a day just checking what's working",
-    body: 'Auction costs shift daily. Competitors enter, audiences saturate, relevance scores fall. Without daily checks, you see the damage in the monthly report, not when you could still fix it.',
+    title: "Two hours a day just checking what is working",
+    body: 'Someone on your team is opening the ads manager every morning, staring at numbers, trying to figure out what to pause and what to keep running. That is two hours of your day going into a task that should take ten minutes.',
   },
   {
     n: '05',
     title: "Reports that tell you nothing useful",
-    body: 'A 6-second load time. An eight-field form. A headline that says something different to the ad. The page gets the traffic and kills it. Ads take the blame.',
+    body: 'You get a PDF or a spreadsheet at the end of the month. It has a lot of numbers in it. But when you try to understand what actually happened and what should change next month, there is no clear answer.',
   },
 ]
 
 function ProblemItem({ n, title, body }) {
   const [open, setOpen] = useState(false)
-  const [height, setHeight] = useState(0)
-  const innerRef = useRef(null)
-  useEffect(() => { if (innerRef.current) setHeight(innerRef.current.scrollHeight) }, [])
   return (
     <div style={{ background: open ? 'var(--red-dim)' : 'rgba(255,255,255,0.03)', border: open ? '1px solid rgba(232,41,30,0.2)' : '1px solid rgba(255,255,255,0.06)', borderRadius: 'var(--r-md)', marginBottom: '8px', transition: 'background 300ms ease, border-color 300ms ease', padding: '0 16px' }}>
       <div
@@ -56,9 +53,19 @@ function ProblemItem({ n, title, body }) {
         <span style={{ fontFamily: 'var(--font-sans)', fontSize: '15px', fontWeight: '600', color: '#ffffff', flex: 1 }}>{title}</span>
         <span style={{ color: '#E8291E', fontSize: '18px', transform: open ? 'rotate(45deg)' : 'rotate(0)', transition: 'transform 300ms ease', display: 'inline-block', flexShrink: 0 }}>+</span>
       </div>
-      <div style={{ overflow: 'hidden', maxHeight: open ? `${height}px` : '0px', transition: 'max-height 350ms ease' }}>
-        <div ref={innerRef} style={{ paddingBottom: '22px', paddingLeft: '48px' }}>
-          <p style={{ fontSize: '15px', fontWeight: '300', color: 'var(--text-3)', lineHeight: '1.65', margin: 0 }}>{body}</p>
+      <div style={{
+        overflow: 'hidden',
+        maxHeight: open ? '400px' : '0px',
+        transition: 'max-height 400ms ease',
+      }}>
+        <div style={{ padding: '16px 0 24px 0' }}>
+          <p style={{
+            fontSize: '14px',
+            fontWeight: '300',
+            color: 'rgba(255,255,255,0.55)',
+            lineHeight: '1.65',
+            margin: 0,
+          }}>{body}</p>
         </div>
       </div>
     </div>
