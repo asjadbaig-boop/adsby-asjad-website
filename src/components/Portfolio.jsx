@@ -3,18 +3,18 @@ import { useRef, useEffect, useState } from 'react'
 const CAMPAIGNS = [
   {
     id: 1,
-    name: 'Furniture Lead Gen',
-    tag: 'Lead Generation',
-    metric: 'CPL reduced significantly',
-    pdfLink: '#',
+    name: 'SOB Webinar — May 31',
+    tag: 'Webinar',
+    metric: '311 registrations · $3.28 avg CPL',
+    pdfLink: '/casestudies/casestudy-sob-webinar.pdf',
     chartData: [
-      { day: 'W1', cpl: 45, leads: 12 },
-      { day: 'W2', cpl: 38, leads: 18 },
-      { day: 'W3', cpl: 29, leads: 27 },
-      { day: 'W4', cpl: 22, leads: 35 },
+      { day: 'W1', cpl: 5.20, leads: 48 },
+      { day: 'W2', cpl: 4.10, leads: 82 },
+      { day: 'W3', cpl: 3.60, leads: 108 },
+      { day: 'W4', cpl: 3.28, leads: 311 },
     ],
-    improvement: '-51%',
-    improvementLabel: 'CPL drop',
+    improvement: '+311',
+    improvementLabel: 'Total Registrations',
   },
   {
     id: 2,
@@ -122,9 +122,6 @@ export default function Portfolio() {
             </a>
           ))}
         </div>
-        <p style={{ fontSize: '11px', color: 'var(--text-3)', textAlign: 'center', marginTop: '20px', fontFamily: 'var(--font-sans)' }}>
-          To link real PDFs: update the <code>pdfLink</code> field in the CAMPAIGNS array with your Google Drive share links.
-        </p>
       </div>
     </section>
   )

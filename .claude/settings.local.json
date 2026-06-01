@@ -9,7 +9,13 @@
       "Bash(git commit *)",
       "Bash(git push *)",
       "Bash(New-Item *)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(Get-ChildItem -Recurse \"C:\\\\Users\\\\hp\\\\Desktop\\\\my website!\\\\public\")",
+      "Bash(Select-Object FullName)",
+      "Bash(mkdir -p \"/mnt/c/Users/hp/Desktop/my website!/public/casestudies\")",
+      "Bash(cp \"/mnt/c/Users/hp/Desktop/casestudywebinar31.pdf\" \"/mnt/c/Users/hp/Desktop/my website!/public/casestudies/casestudy-sob-webinar.pdf\")",
+      "Bash(mkdir \"C:\\\\Users\\\\hp\\\\Desktop\\\\my website!\\\\public\\\\casestudies\")",
+      "Bash(cp \"C:\\\\Users\\\\hp\\\\Desktop\\\\casestudywebinar31.pdf\" \"C:\\\\Users\\\\hp\\\\Desktop\\\\my website!\\\\public\\\\casestudies\\\\casestudy-sob-webinar.pdf\")"
     ]
   }
 }

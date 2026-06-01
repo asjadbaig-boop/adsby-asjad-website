@@ -189,10 +189,6 @@ export default function Hero() {
                 }
               }}
             />
-            <div style={{ textAlign: 'center', padding: '24px', position: 'relative', zIndex: 1 }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '48px', color: 'var(--text-4)' }}>A</div>
-              <p style={{ fontSize: '12px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)', margin: 0 }}>Add profile.jpg to /public</p>
-            </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
             <div style={{ display: 'flex', gap: '3px' }}>

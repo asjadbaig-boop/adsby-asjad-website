@@ -50,14 +50,6 @@ export default function AdShowcase() {
         <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '16px', scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'pan-x' }}>
           {AD_CREATIVES.map(item => <AdCard key={item.id} item={item} />)}
         </div>
-        <div style={{ marginTop: '24px', background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-md)', padding: '16px 20px' }}>
-          <p style={{ fontSize: '12px', fontWeight: '600', color: 'var(--text-1)', margin: '0 0 6px', fontFamily: 'var(--font-sans)' }}>How to add your campaign videos</p>
-          <p style={{ fontSize: '12px', color: 'var(--text-2)', margin: 0, lineHeight: '1.6', fontFamily: 'var(--font-sans)' }}>
-            1. Add your video files to <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>/public/ads/</code> folder (e.g. <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>ad1.mp4</code>)<br/>
-            2. In the <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>AD_CREATIVES</code> array, set <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>type: 'video'</code> and <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>src: '/ads/ad1.mp4'</code><br/>
-            3. For images, set <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>type: 'image'</code> and <code style={{ background: 'var(--bg-elevated)', padding: '1px 5px', borderRadius: '4px' }}>src: '/ads/ad1.jpg'</code>
-          </p>
-        </div>
       </div>
     </section>
   )
