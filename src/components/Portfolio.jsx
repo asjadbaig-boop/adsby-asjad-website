@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react'
 const CAMPAIGNS = [
   {
     id: 1,
-    name: 'SOB Webinar — May 31',
+    name: 'SOB Webinar, May 31',
     tag: 'Webinar',
     metric: '311 registrations · $3.28 avg CPL',
     pdfLink: '/casestudies/casestudy-sob-webinar.pdf',

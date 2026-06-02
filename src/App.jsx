@@ -11,6 +11,7 @@ import Results from './components/Results'
 import Testimonials from './components/Testimonials'
 import FounderStory from './components/FounderStory'
 import Portfolio from './components/Portfolio'
+import DashboardPreview from './components/DashboardPreview'
 import HiringSection from './components/HiringSection'
 import AdShowcase from './components/AdShowcase'
 import FAQ from './components/FAQ'
@@ -88,6 +89,7 @@ export default function App() {
         <Testimonials />
         <FounderStory />
         <Portfolio />
+        <DashboardPreview />
         <HiringSection />
         <SectionDivider />
         <FAQ />
