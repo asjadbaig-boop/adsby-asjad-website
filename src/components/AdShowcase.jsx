@@ -77,6 +77,9 @@ function Lightbox({ src, label, onClose }) {
 }
 
 function AdCard({ item, onOpen }) {
+  // Used only for mobile tap detection — not for pausing scroll
+  const touchStart = useRef({ x: 0, y: 0 })
+
   const baseStyle = {
     height: '320px',
     borderRadius: '12px',
@@ -107,7 +110,25 @@ function AdCard({ item, onOpen }) {
     return (
       <div
         className="ad-card"
+        // Desktop: plain click opens lightbox
         onClick={() => onOpen(item)}
+        // Mobile: record finger-down position
+        onTouchStart={e => {
+          const t = e.touches[0]
+          touchStart.current = { x: t.clientX, y: t.clientY }
+        }}
+        // Mobile: only open lightbox if finger barely moved (tap, not swipe)
+        onTouchEnd={e => {
+          const t = e.changedTouches[0]
+          const dx = Math.abs(t.clientX - touchStart.current.x)
+          const dy = Math.abs(t.clientY - touchStart.current.y)
+          if (dx < 8 && dy < 8) {
+            // Suppress the synthetic click that would fire ~300ms later
+            e.preventDefault()
+            onOpen(item)
+          }
+          // dx/dy >= 8 → swipe; do nothing, scroll continues uninterrupted
+        }}
         style={{
           ...baseStyle,
           cursor: 'zoom-in',
@@ -147,15 +168,11 @@ function AdCard({ item, onOpen }) {
 }
 
 export default function AdShowcase() {
+  // isPaused is ONLY controlled by lightbox open/close — nothing else
   const [lightbox, setLightbox] = useState(null)
   const [isPaused, setIsPaused] = useState(false)
-  const resumeTimer = useRef(null)
-
-  // Clear pending resume timer on unmount
-  useEffect(() => () => clearTimeout(resumeTimer.current), [])
 
   const openLightbox = item => {
-    clearTimeout(resumeTimer.current)
     setIsPaused(true)
     setLightbox(item)
   }
@@ -163,27 +180,6 @@ export default function AdShowcase() {
   const closeLightbox = () => {
     setLightbox(null)
     setIsPaused(false)
-  }
-
-  // Desktop hover
-  const handleMouseEnter = () => {
-    clearTimeout(resumeTimer.current)
-    setIsPaused(true)
-  }
-  const handleMouseLeave = () => {
-    clearTimeout(resumeTimer.current)
-    setIsPaused(false)
-  }
-
-  // Mobile touch — pause immediately, resume 2s after finger lifts
-  const handleTouchStart = () => {
-    clearTimeout(resumeTimer.current)
-    setIsPaused(true)
-  }
-  const handleTouchEnd = () => {
-    // openLightbox will clearTimeout if a tap triggered a lightbox open,
-    // so this timer only fires for plain swipes with no lightbox.
-    resumeTimer.current = setTimeout(() => setIsPaused(false), 2000)
   }
 
   return (
@@ -197,12 +193,10 @@ export default function AdShowcase() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
-        /* Card widths — desktop 280px, mobile 220px */
         .ad-card { width: 280px; }
         @media (max-width: 768px) { .ad-card { width: 220px; } }
       `}</style>
 
-      {/* Section header stays inside max-width container */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '40px' }}>
         <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
           CREATIVE WORK
@@ -212,27 +206,18 @@ export default function AdShowcase() {
         </h2>
       </div>
 
-      {/*
-        Outer wrapper: overflow:hidden clips the track, fade masks on edges
-        give a premium "window into a wider strip" effect.
-        Touch and hover events live here so the full strip area is interactive.
-      */}
+      {/* Outer wrapper — no touch or hover handlers, overflow:hidden clips the track */}
       <div
         style={{
           overflow: 'hidden',
           maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
         }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
       >
         {/*
-          Inner track: renders 10 cards (5 originals + 5 duplicates).
-          The marquee animation shifts it -50% (= exactly one full set width),
-          then loops — creating a seamless infinite scroll.
-          animationPlayState is driven by isPaused state.
+          Inner track: 10 cards (5 + 5 duplicate).
+          marquee shifts -50% = exactly one set width, then loops seamlessly.
+          animationPlayState toggled only by lightbox state.
         */}
         <div
           style={{
