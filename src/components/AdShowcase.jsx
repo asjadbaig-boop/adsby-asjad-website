@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const AD_CREATIVES = [
   { id: 1, type: 'image', label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
@@ -7,6 +7,9 @@ const AD_CREATIVES = [
   { id: 4, type: 'image', label: 'Ad Creative 4', src: '/ads/Artboard 8.png' },
   { id: 5, type: 'image', label: 'Ad Creative 5', src: '/ads/Artboard 9.png' },
 ]
+
+// Duplicated array — second copy drives the seamless loop
+const LOOP_ITEMS = [...AD_CREATIVES, ...AD_CREATIVES]
 
 function Lightbox({ src, label, onClose }) {
   useEffect(() => {
@@ -80,7 +83,6 @@ function AdCard({ item, onOpen }) {
     overflow: 'hidden',
     flexShrink: 0,
     border: '1px solid var(--border-1)',
-    scrollSnapAlign: 'start',
   }
 
   if (item.src && item.type === 'video') {
@@ -112,7 +114,7 @@ function AdCard({ item, onOpen }) {
           transition: 'transform 200ms ease, box-shadow 200ms ease',
         }}
         onMouseEnter={e => {
-          e.currentTarget.style.transform = 'scale(1.02)'
+          e.currentTarget.style.transform = 'scale(1.03)'
           e.currentTarget.style.boxShadow = 'var(--shadow-3)'
         }}
         onMouseLeave={e => {
@@ -146,6 +148,43 @@ function AdCard({ item, onOpen }) {
 
 export default function AdShowcase() {
   const [lightbox, setLightbox] = useState(null)
+  const [isPaused, setIsPaused] = useState(false)
+  const resumeTimer = useRef(null)
+
+  // Clear pending resume timer on unmount
+  useEffect(() => () => clearTimeout(resumeTimer.current), [])
+
+  const openLightbox = item => {
+    clearTimeout(resumeTimer.current)
+    setIsPaused(true)
+    setLightbox(item)
+  }
+
+  const closeLightbox = () => {
+    setLightbox(null)
+    setIsPaused(false)
+  }
+
+  // Desktop hover
+  const handleMouseEnter = () => {
+    clearTimeout(resumeTimer.current)
+    setIsPaused(true)
+  }
+  const handleMouseLeave = () => {
+    clearTimeout(resumeTimer.current)
+    setIsPaused(false)
+  }
+
+  // Mobile touch — pause immediately, resume 2s after finger lifts
+  const handleTouchStart = () => {
+    clearTimeout(resumeTimer.current)
+    setIsPaused(true)
+  }
+  const handleTouchEnd = () => {
+    // openLightbox will clearTimeout if a tap triggered a lightbox open,
+    // so this timer only fires for plain swipes with no lightbox.
+    resumeTimer.current = setTimeout(() => setIsPaused(false), 2000)
+  }
 
   return (
     <section style={{ background: 'var(--bg-void)', padding: '80px 0' }}>
@@ -154,55 +193,71 @@ export default function AdShowcase() {
           from { opacity: 0; }
           to   { opacity: 1; }
         }
-        .ad-scroll-container::-webkit-scrollbar { display: none; }
-        .ad-card { width: 180px; }
-        @media (max-width: 768px) {
-          .ad-card { width: min(260px, 75vw) !important; }
-          .ad-scroll-container { padding-left: 16px !important; padding-right: 16px !important; }
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
         }
+        /* Card widths — desktop 280px, mobile 220px */
+        .ad-card { width: 280px; }
+        @media (max-width: 768px) { .ad-card { width: 220px; } }
       `}</style>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
+      {/* Section header stays inside max-width container */}
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '40px' }}>
         <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
           CREATIVE WORK
         </p>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', marginBottom: '40px', letterSpacing: '-0.03em' }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', letterSpacing: '-0.03em' }}>
           Ads built to convert.
         </h2>
       </div>
 
       {/*
-        Scroll container sits outside the maxWidth wrapper so it bleeds
-        to the right on desktop while still padding left. On mobile the
-        CSS rule above overrides the padding to give a left anchor.
+        Outer wrapper: overflow:hidden clips the track, fade masks on edges
+        give a premium "window into a wider strip" effect.
+        Touch and hover events live here so the full strip area is interactive.
       */}
       <div
-        className="ad-scroll-container"
         style={{
-          display: 'flex',
-          flexWrap: 'nowrap',
-          gap: '16px',
-          overflowX: 'auto',
-          paddingLeft: '24px',
-          paddingRight: '24px',
-          paddingBottom: '16px',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
-          WebkitOverflowScrolling: 'touch',
-          scrollSnapType: 'x mandatory',
-          touchAction: 'pan-x',
+          overflow: 'hidden',
+          maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
+          WebkitMaskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        {AD_CREATIVES.map(item => (
-          <AdCard key={item.id} item={item} onOpen={setLightbox} />
-        ))}
+        {/*
+          Inner track: renders 10 cards (5 originals + 5 duplicates).
+          The marquee animation shifts it -50% (= exactly one full set width),
+          then loops — creating a seamless infinite scroll.
+          animationPlayState is driven by isPaused state.
+        */}
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'nowrap',
+            gap: '16px',
+            width: 'max-content',
+            paddingBottom: '16px',
+            paddingLeft: '24px',
+            animation: 'marquee 35s linear infinite',
+            animationPlayState: isPaused ? 'paused' : 'running',
+            willChange: 'transform',
+          }}
+        >
+          {LOOP_ITEMS.map((item, index) => (
+            <AdCard key={`${item.id}-${index}`} item={item} onOpen={openLightbox} />
+          ))}
+        </div>
       </div>
 
       {lightbox && (
         <Lightbox
           src={lightbox.src}
           label={lightbox.label}
-          onClose={() => setLightbox(null)}
+          onClose={closeLightbox}
         />
       )}
     </section>
