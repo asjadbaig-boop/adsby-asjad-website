@@ -2,7 +2,7 @@ const STATS = [
   { number: '$200k+', label: 'Ad spend managed' },
   { number: '7,000+', label: 'Leads generated' },
   { number: '3-5 accounts', label: 'Managed at once' },
-  { number: '1.5+ yrs', label: 'Hands-on media buying' },
+  { number: '3+ yrs', label: 'Hands-on media buying' },
 ]
 
 const SKILLS = ['Meta Ads', 'Pixel + CAPI', 'GoHighLevel', 'Lead Gen', 'Creative Testing', 'Budget Scaling', 'AI Tools', 'Direct Communication']
