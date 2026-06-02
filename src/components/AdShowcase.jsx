@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+
 const AD_CREATIVES = [
   { id: 1, type: 'image', label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
   { id: 2, type: 'image', label: 'Ad Creative 2', src: '/ads/Artboard 6.png' },
@@ -6,10 +8,84 @@ const AD_CREATIVES = [
   { id: 5, type: 'image', label: 'Ad Creative 5', src: '/ads/Artboard 9.png' },
 ]
 
-function AdCard({ item }) {
+function Lightbox({ src, label, onClose }) {
+  useEffect(() => {
+    const onKey = e => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: 'rgba(0,0,0,0.92)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        animation: 'lbFadeIn 150ms ease forwards',
+      }}
+    >
+      <button
+        onClick={onClose}
+        aria-label="Close"
+        style={{
+          position: 'absolute',
+          top: '16px',
+          right: '20px',
+          background: 'none',
+          border: 'none',
+          color: '#ffffff',
+          fontSize: '28px',
+          lineHeight: 1,
+          cursor: 'pointer',
+          padding: '8px',
+          zIndex: 1,
+          opacity: 0.8,
+          transition: 'opacity 150ms ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.opacity = '1' }}
+        onMouseLeave={e => { e.currentTarget.style.opacity = '0.8' }}
+      >
+        ✕
+      </button>
+      <img
+        src={src}
+        alt={label}
+        onClick={e => e.stopPropagation()}
+        style={{
+          maxWidth: '90vw',
+          maxHeight: '90vh',
+          objectFit: 'contain',
+          borderRadius: '8px',
+          boxShadow: '0 24px 80px rgba(0,0,0,0.6)',
+          display: 'block',
+        }}
+      />
+    </div>
+  )
+}
+
+function AdCard({ item, onOpen }) {
+  const baseStyle = {
+    height: '320px',
+    borderRadius: '12px',
+    overflow: 'hidden',
+    flexShrink: 0,
+    border: '1px solid var(--border-1)',
+    scrollSnapAlign: 'start',
+  }
+
   if (item.src && item.type === 'video') {
     return (
-      <div style={{ width: '180px', height: '320px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0, border: '1px solid var(--border-1)', position: 'relative' }}>
+      <div className="ad-card" style={{ ...baseStyle, position: 'relative' }}>
         <video
           src={item.src}
           autoPlay
@@ -24,15 +100,42 @@ function AdCard({ item }) {
       </div>
     )
   }
+
   if (item.src && item.type === 'image') {
     return (
-      <div style={{ width: '180px', height: '320px', borderRadius: '12px', overflow: 'hidden', flexShrink: 0, border: '1px solid var(--border-1)' }}>
-        <img src={item.src} alt={item.label} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+      <div
+        className="ad-card"
+        onClick={() => onOpen(item)}
+        style={{
+          ...baseStyle,
+          cursor: 'zoom-in',
+          transition: 'transform 200ms ease, box-shadow 200ms ease',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.transform = 'scale(1.02)'
+          e.currentTarget.style.boxShadow = 'var(--shadow-3)'
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.transform = 'scale(1)'
+          e.currentTarget.style.boxShadow = 'none'
+        }}
+      >
+        <img
+          src={item.src}
+          alt={item.label}
+          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', pointerEvents: 'none' }}
+          loading="lazy"
+          draggable="false"
+        />
       </div>
     )
   }
+
   return (
-    <div style={{ width: '180px', height: '320px', background: 'var(--bg-elevated)', border: '1px solid var(--border-1)', borderRadius: '12px', flexShrink: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+    <div
+      className="ad-card"
+      style={{ ...baseStyle, background: 'var(--bg-elevated)', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+    >
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
       </svg>
@@ -42,15 +145,66 @@ function AdCard({ item }) {
 }
 
 export default function AdShowcase() {
+  const [lightbox, setLightbox] = useState(null)
+
   return (
     <section style={{ background: 'var(--bg-void)', padding: '80px 0' }}>
+      <style>{`
+        @keyframes lbFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        .ad-scroll-container::-webkit-scrollbar { display: none; }
+        .ad-card { width: 180px; }
+        @media (max-width: 768px) {
+          .ad-card { width: min(260px, 75vw) !important; }
+          .ad-scroll-container { padding-left: 16px !important; padding-right: 16px !important; }
+        }
+      `}</style>
+
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px' }}>
-        <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>CREATIVE WORK</p>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', marginBottom: '40px', letterSpacing: '-0.03em' }}>Ads built to convert.</h2>
-        <div style={{ display: 'flex', gap: '16px', overflowX: 'auto', paddingBottom: '16px', scrollbarWidth: 'none', msOverflowStyle: 'none', touchAction: 'pan-x' }}>
-          {AD_CREATIVES.map(item => <AdCard key={item.id} item={item} />)}
-        </div>
+        <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
+          CREATIVE WORK
+        </p>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', marginBottom: '40px', letterSpacing: '-0.03em' }}>
+          Ads built to convert.
+        </h2>
       </div>
+
+      {/*
+        Scroll container sits outside the maxWidth wrapper so it bleeds
+        to the right on desktop while still padding left. On mobile the
+        CSS rule above overrides the padding to give a left anchor.
+      */}
+      <div
+        className="ad-scroll-container"
+        style={{
+          display: 'flex',
+          flexWrap: 'nowrap',
+          gap: '16px',
+          overflowX: 'auto',
+          paddingLeft: '24px',
+          paddingRight: '24px',
+          paddingBottom: '16px',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
+          WebkitOverflowScrolling: 'touch',
+          scrollSnapType: 'x mandatory',
+          touchAction: 'pan-x',
+        }}
+      >
+        {AD_CREATIVES.map(item => (
+          <AdCard key={item.id} item={item} onOpen={setLightbox} />
+        ))}
+      </div>
+
+      {lightbox && (
+        <Lightbox
+          src={lightbox.src}
+          label={lightbox.label}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </section>
   )
 }
