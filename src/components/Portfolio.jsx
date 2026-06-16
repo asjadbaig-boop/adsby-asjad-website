@@ -84,6 +84,12 @@ function MiniChart({ data }) {
   )
 }
 
+function getCardHref(pdfLink) {
+  if (!pdfLink || pdfLink === '#') return '#'
+  const absolute = window.location.origin + pdfLink
+  return 'https://docs.google.com/viewer?url=' + encodeURIComponent(absolute) + '&embedded=false'
+}
+
 export default function Portfolio() {
   return (
     <section id="portfolio" style={{ background: 'var(--bg-void)', padding: '80px 0' }}>
@@ -97,10 +103,10 @@ export default function Portfolio() {
           {CAMPAIGNS.map((c) => (
             <a
               key={c.id}
-              href={c.pdfLink}
-              target="_blank"
+              href={getCardHref(c.pdfLink)}
+              target={c.pdfLink && c.pdfLink !== '#' ? '_blank' : undefined}
               rel="noopener noreferrer"
-              style={{ textDecoration: 'none', display: 'block', background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-lg)', padding: '20px', boxShadow: 'var(--shadow-1)', cursor: 'pointer', transition: 'transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease' }}
+              style={{ textDecoration: 'none', display: 'block', background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-lg)', padding: '20px', boxShadow: 'var(--shadow-1)', cursor: c.pdfLink && c.pdfLink !== '#' ? 'pointer' : 'default', transition: 'transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease' }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-3)'; e.currentTarget.style.borderColor = 'rgba(232,41,30,0.25)' }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-1)'; e.currentTarget.style.borderColor = 'var(--border-1)' }}
             >
