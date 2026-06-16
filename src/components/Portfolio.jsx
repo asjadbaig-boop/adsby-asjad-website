@@ -18,18 +18,20 @@ const CAMPAIGNS = [
   },
   {
     id: 2,
-    name: 'Insurance Campaign',
-    tag: 'Insurance',
-    metric: 'Consistent lead flow',
-    pdfLink: '#',
+    name: 'Luxury Interior Design Client',
+    tag: 'Lead Generation',
+    metric: '179 leads · ₹170.04 avg CPL',
+    subMetric: '₹30,437 spend · 60 days',
+    pdfLink: '/casestudies/casestudy_IP.pdf',
+    useViewer: true,
     chartData: [
-      { day: 'W1', cpl: 60, leads: 8 },
-      { day: 'W2', cpl: 52, leads: 14 },
-      { day: 'W3', cpl: 41, leads: 22 },
-      { day: 'W4', cpl: 33, leads: 31 },
+      { day: 'W1', cpl: 280, leads: 28 },
+      { day: 'W2', cpl: 210, leads: 52 },
+      { day: 'W3', cpl: 185, leads: 95 },
+      { day: 'W4', cpl: 170, leads: 179 },
     ],
-    improvement: '-45%',
-    improvementLabel: 'CPL drop',
+    improvement: '179',
+    improvementLabel: 'Total Leads',
   },
   {
     id: 3,
@@ -97,7 +99,7 @@ export default function Portfolio() {
           {CAMPAIGNS.map((c) => (
             <a
               key={c.id}
-              href={c.pdfLink}
+              href={c.useViewer ? 'https://docs.google.com/viewer?url=' + encodeURIComponent(window.location.origin + c.pdfLink) + '&embedded=false' : c.pdfLink}
               target="_blank"
               rel="noopener noreferrer"
               className="portfolio-case-card"
@@ -114,7 +116,10 @@ export default function Portfolio() {
               </div>
               <MiniChart data={c.chartData} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '12px', paddingTop: '12px', borderTop: '1px solid var(--border-1)' }}>
-                <span style={{ fontSize: '12px', color: 'var(--text-2)', fontFamily: 'var(--font-sans)' }}>{c.metric}</span>
+                <div>
+                  <span style={{ fontSize: '12px', color: 'var(--text-2)', fontFamily: 'var(--font-sans)' }}>{c.metric}</span>
+                  {c.subMetric && <div style={{ fontSize: '10px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)', marginTop: '3px' }}>{c.subMetric}</div>}
+                </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '20px', color: '#E8291E', letterSpacing: '-0.03em' }}>{c.improvement}</div>
                   <div style={{ fontSize: '10px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)' }}>{c.improvementLabel}</div>
