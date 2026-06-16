@@ -20,10 +20,9 @@ const CAMPAIGNS = [
     id: 2,
     name: 'Luxury Interior Design Client',
     tag: 'Lead Generation',
-    metric: '179 leads · ₹170.04 avg CPL',
-    subMetric: '₹30,437 spend · 60 days',
+    metric: '179 leads · $2.04 avg CPL',
+    subMetric: '$365 spend · 60 days',
     pdfLink: '/casestudies/casestudy_IP.pdf',
-    useViewer: true,
     chartData: [
       { day: 'W1', cpl: 280, leads: 28 },
       { day: 'W2', cpl: 210, leads: 52 },
@@ -99,7 +98,7 @@ export default function Portfolio() {
           {CAMPAIGNS.map((c) => (
             <a
               key={c.id}
-              href={c.useViewer ? 'https://docs.google.com/viewer?url=' + encodeURIComponent(window.location.origin + c.pdfLink) + '&embedded=false' : c.pdfLink}
+              href={c.pdfLink}
               target="_blank"
               rel="noopener noreferrer"
               className="portfolio-case-card"
