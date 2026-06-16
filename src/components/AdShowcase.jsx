@@ -1,15 +1,15 @@
 import { useState, useEffect, useRef } from 'react'
 
 const AD_CREATIVES = [
-  { id: 1, type: 'image', label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
-  { id: 2, type: 'image', label: 'Ad Creative 2', src: '/ads/Artboard 6.png' },
-  { id: 3, type: 'image', label: 'Ad Creative 3', src: '/ads/Artboard 7.png' },
-  { id: 4, type: 'image', label: 'Ad Creative 4', src: '/ads/Artboard 8.png' },
-  { id: 5, type: 'image', label: 'Ad Creative 5', src: '/ads/Artboard 9.png' },
+  { id: 10, type: 'youtube', label: 'Ad Short 1', videoId: 'ruD1CRPrNkU' },
+  { id: 11, type: 'youtube', label: 'Ad Short 2', videoId: 'AMfprBkfXWc' },
+  { id: 12, type: 'youtube', label: 'Ad Short 3', videoId: '7O-uL9yAp60' },
+  { id: 1,  type: 'image',   label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
+  { id: 2,  type: 'image',   label: 'Ad Creative 2', src: '/ads/Artboard 6.png' },
+  { id: 3,  type: 'image',   label: 'Ad Creative 3', src: '/ads/Artboard 7.png' },
+  { id: 7,  type: 'image',   label: 'Ad Creative 4', src: '/ads/1.png' },
+  { id: 8,  type: 'image',   label: 'Ad Creative 5', src: '/ads/2.png' },
 ]
-
-// Duplicated array — second copy drives the seamless loop
-const LOOP_ITEMS = [...AD_CREATIVES, ...AD_CREATIVES]
 
 function Lightbox({ src, label, onClose }) {
   useEffect(() => {
@@ -76,8 +76,38 @@ function Lightbox({ src, label, onClose }) {
   )
 }
 
+function YoutubeCard({ item }) {
+  const src = `https://www.youtube.com/embed/${item.videoId}?autoplay=1&mute=1&loop=1&playlist=${item.videoId}&controls=0&rel=0&modestbranding=1&playsinline=1`
+
+  return (
+    <div
+      className="ad-card ad-card--shorts"
+      style={{
+        flexShrink: 0,
+        borderRadius: '12px',
+        overflow: 'hidden',
+        border: '1px solid var(--border-1)',
+      }}
+    >
+      <iframe
+        src={src}
+        title={item.label}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        frameBorder="0"
+        loading="lazy"
+        style={{
+          display: 'block',
+          width: '100%',
+          height: '100%',
+          border: 'none',
+        }}
+      />
+    </div>
+  )
+}
+
 function AdCard({ item, onOpen }) {
-  // Used only for mobile tap detection — not for pausing scroll
   const touchStart = useRef({ x: 0, y: 0 })
 
   const baseStyle = {
@@ -88,46 +118,27 @@ function AdCard({ item, onOpen }) {
     border: '1px solid var(--border-1)',
   }
 
-  if (item.src && item.type === 'video') {
-    return (
-      <div className="ad-card" style={{ ...baseStyle, position: 'relative' }}>
-        <video
-          src={item.src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', bottom: '8px', left: '8px', background: 'rgba(0,0,0,0.6)', padding: '3px 8px', borderRadius: '999px' }}>
-          <span style={{ fontSize: '10px', color: 'white', fontFamily: 'var(--font-sans)' }}>{item.label}</span>
-        </div>
-      </div>
-    )
+  if (item.type === 'youtube') {
+    return <YoutubeCard item={item} />
   }
 
   if (item.src && item.type === 'image') {
     return (
       <div
         className="ad-card"
-        // Desktop: plain click opens lightbox
         onClick={() => onOpen(item)}
-        // Mobile: record finger-down position
         onTouchStart={e => {
           const t = e.touches[0]
           touchStart.current = { x: t.clientX, y: t.clientY }
         }}
-        // Mobile: only open lightbox if finger barely moved (tap, not swipe)
         onTouchEnd={e => {
           const t = e.changedTouches[0]
           const dx = Math.abs(t.clientX - touchStart.current.x)
           const dy = Math.abs(t.clientY - touchStart.current.y)
           if (dx < 8 && dy < 8) {
-            // Suppress the synthetic click that would fire ~300ms later
             e.preventDefault()
             onOpen(item)
           }
-          // dx/dy >= 8 → swipe; do nothing, scroll continues uninterrupted
         }}
         style={{
           ...baseStyle,
@@ -168,19 +179,10 @@ function AdCard({ item, onOpen }) {
 }
 
 export default function AdShowcase() {
-  // isPaused is ONLY controlled by lightbox open/close — nothing else
   const [lightbox, setLightbox] = useState(null)
-  const [isPaused, setIsPaused] = useState(false)
 
-  const openLightbox = item => {
-    setIsPaused(true)
-    setLightbox(item)
-  }
-
-  const closeLightbox = () => {
-    setLightbox(null)
-    setIsPaused(false)
-  }
+  const openLightbox = item => setLightbox(item)
+  const closeLightbox = () => setLightbox(null)
 
   return (
     <section style={{ background: 'var(--bg-void)', padding: '80px 0' }}>
@@ -189,51 +191,72 @@ export default function AdShowcase() {
           from { opacity: 0; }
           to   { opacity: 1; }
         }
-        @keyframes marquee {
-          0%   { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
+
+        /* Image cards */
+        .ad-card {
+          width: 280px;
+          scroll-snap-align: start;
         }
-        .ad-card { width: 280px; }
-        @media (max-width: 768px) { .ad-card { width: 220px; } }
+
+        /* YouTube Shorts cards — 9:16 aspect ratio */
+        .ad-card--shorts {
+          width: 280px;
+          height: 498px;
+        }
+
+        @media (max-width: 768px) {
+          .ad-card         { width: 220px; }
+          .ad-card--shorts { width: 220px; height: 390px; }
+        }
+
+        .ad-scroll-hint-desktop { display: inline; }
+        .ad-scroll-hint-mobile  { display: none; }
+        @media (max-width: 768px) {
+          .ad-scroll-hint-desktop { display: none; }
+          .ad-scroll-hint-mobile  { display: inline; }
+        }
+
+        .ad-strip::-webkit-scrollbar { display: none; }
       `}</style>
 
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '40px' }}>
+      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '28px' }}>
         <p style={{ fontSize: '10px', fontWeight: '700', color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: '0.14em', marginBottom: '12px', fontFamily: 'var(--font-sans)' }}>
           CREATIVE WORK
         </p>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', letterSpacing: '-0.03em' }}>
+        <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 40px)', color: 'var(--text-1)', letterSpacing: '-0.03em', marginBottom: '12px' }}>
           Ads built to convert.
         </h2>
+        <p style={{ fontSize: '13px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)', fontWeight: 400 }}>
+          <span className="ad-scroll-hint-desktop">Scroll to preview the ads we've created →</span>
+          <span className="ad-scroll-hint-mobile">Swipe to preview the ads we've created →</span>
+        </p>
       </div>
 
-      {/* Outer wrapper — no touch or hover handlers, overflow:hidden clips the track */}
+      {/* Horizontally scrollable strip — user-controlled */}
       <div
+        className="ad-strip"
         style={{
-          overflow: 'hidden',
-          maskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
-          WebkitMaskImage: 'linear-gradient(to right, transparent, black 4%, black 96%, transparent)',
+          overflowX: 'auto',
+          overflowY: 'hidden',
+          WebkitOverflowScrolling: 'touch',
+          scrollSnapType: 'x mandatory',
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none',
         }}
       >
-        {/*
-          Inner track: 10 cards (5 + 5 duplicate).
-          marquee shifts -50% = exactly one set width, then loops seamlessly.
-          animationPlayState toggled only by lightbox state.
-        */}
         <div
           style={{
             display: 'flex',
             flexWrap: 'nowrap',
+            alignItems: 'flex-start',
             gap: '16px',
-            width: 'max-content',
-            paddingBottom: '16px',
             paddingLeft: '24px',
-            animation: 'marquee 35s linear infinite',
-            animationPlayState: isPaused ? 'paused' : 'running',
-            willChange: 'transform',
+            paddingRight: '24px',
+            paddingBottom: '16px',
           }}
         >
-          {LOOP_ITEMS.map((item, index) => (
-            <AdCard key={`${item.id}-${index}`} item={item} onOpen={openLightbox} />
+          {AD_CREATIVES.map(item => (
+            <AdCard key={item.id} item={item} onOpen={openLightbox} />
           ))}
         </div>
       </div>
