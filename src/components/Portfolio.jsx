@@ -92,7 +92,7 @@ export default function Portfolio() {
         <h2 style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: 'clamp(28px, 4vw, 44px)', color: 'var(--text-1)', marginBottom: '8px', letterSpacing: '-0.03em' }}>
           Campaigns we've run.
         </h2>
-        <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '40px', fontFamily: 'var(--font-sans)' }}>Click any card to see the numbers.</p>
+        <p style={{ fontSize: '13px', color: 'var(--text-3)', marginBottom: '40px', fontFamily: 'var(--font-sans)' }}>Click any card to view the full case study.</p>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '16px' }}>
           {CAMPAIGNS.map((c) => (
             <a
@@ -100,6 +100,7 @@ export default function Portfolio() {
               href={c.pdfLink}
               target="_blank"
               rel="noopener noreferrer"
+              className="portfolio-case-card"
               style={{ textDecoration: 'none', display: 'block', background: 'var(--bg-surface)', border: '1px solid var(--border-1)', borderRadius: 'var(--r-lg)', padding: '20px', boxShadow: 'var(--shadow-1)', cursor: 'pointer', transition: 'transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease' }}
               onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = 'var(--shadow-3)'; e.currentTarget.style.borderColor = 'rgba(232,41,30,0.25)' }}
               onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'var(--shadow-1)'; e.currentTarget.style.borderColor = 'var(--border-1)' }}
@@ -118,6 +119,10 @@ export default function Portfolio() {
                   <div style={{ fontFamily: 'var(--font-display)', fontWeight: 900, fontSize: '20px', color: '#E8291E', letterSpacing: '-0.03em' }}>{c.improvement}</div>
                   <div style={{ fontSize: '10px', color: 'var(--text-3)', fontFamily: 'var(--font-sans)' }}>{c.improvementLabel}</div>
                 </div>
+              </div>
+              <div className="portfolio-card-hint">
+                <span className="hint-desktop">Click to view case study →</span>
+                <span className="hint-mobile">Tap to view case study →</span>
               </div>
             </a>
           ))}

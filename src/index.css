@@ -1878,6 +1878,30 @@ h1, h2 { font-family: var(--font-display); letter-spacing: -0.03em; }
   transform: translateY(0);
 }
 
+/* ─── Portfolio card click hint ──────────────────────────── */
+.portfolio-card-hint {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-1);
+  font-family: var(--font-sans);
+  font-size: 11px;
+  color: var(--text-3);
+  transition: color 200ms ease;
+}
+
+.portfolio-case-card:hover .portfolio-card-hint {
+  color: var(--red);
+}
+
+.portfolio-card-hint .hint-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .portfolio-card-hint .hint-desktop { display: none; }
+  .portfolio-card-hint .hint-mobile  { display: inline; }
+}
+
 @keyframes pulse-ring {
   0% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
   70% { box-shadow: 0 0 0 12px rgba(255,255,255,0); }
