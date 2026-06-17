@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
 
 const AD_CREATIVES = [
-  { id: 10, type: 'youtube', label: 'Ad Short 1', videoId: 'ruD1CRPrNkU' },
-  { id: 11, type: 'youtube', label: 'Ad Short 2', videoId: 'AMfprBkfXWc' },
+  { id: 11, type: 'youtube', label: 'Ad Short 1', videoId: 'AMfprBkfXWc' },
+  { id: 13, type: 'youtube', label: 'Ad Short 2', videoId: 'triP9bfVwKQ' },
   { id: 12, type: 'youtube', label: 'Ad Short 3', videoId: '7O-uL9yAp60' },
+  { id: 14, type: 'youtube', label: 'Ad Short 4', videoId: '6Bndpvxadeg' },
+  { id: 10, type: 'youtube', label: 'Ad Short 5', videoId: 'ruD1CRPrNkU' },
   { id: 1,  type: 'image',   label: 'Ad Creative 1', src: '/ads/Artboard 5.png' },
   { id: 2,  type: 'image',   label: 'Ad Creative 2', src: '/ads/Artboard 6.png' },
   { id: 3,  type: 'image',   label: 'Ad Creative 3', src: '/ads/Artboard 7.png' },
@@ -216,7 +218,18 @@ export default function AdShowcase() {
           .ad-scroll-hint-mobile  { display: inline; }
         }
 
+        /* Mobile: hide scrollbar (swipe hint text is sufficient) */
+        .ad-strip { scrollbar-width: none; -ms-overflow-style: none; }
         .ad-strip::-webkit-scrollbar { display: none; }
+
+        /* Desktop: thin styled scrollbar */
+        @media (min-width: 769px) {
+          .ad-strip { scrollbar-width: thin; scrollbar-color: var(--red) transparent; }
+          .ad-strip::-webkit-scrollbar { display: block; height: 6px; }
+          .ad-strip::-webkit-scrollbar-track { background: transparent; }
+          .ad-strip::-webkit-scrollbar-thumb { background: var(--red); border-radius: 999px; }
+          .ad-strip::-webkit-scrollbar-thumb:hover { background: var(--red-hover); }
+        }
       `}</style>
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 24px', marginBottom: '28px' }}>
@@ -240,8 +253,6 @@ export default function AdShowcase() {
           overflowY: 'hidden',
           WebkitOverflowScrolling: 'touch',
           scrollSnapType: 'x mandatory',
-          scrollbarWidth: 'none',
-          msOverflowStyle: 'none',
         }}
       >
         <div
